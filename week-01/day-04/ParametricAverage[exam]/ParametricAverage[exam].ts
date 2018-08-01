@@ -1,3 +1,4 @@
+'use strict';
 var addNumbers = 0;
 var firstOpen = true;
 while (firstOpen == true) {
