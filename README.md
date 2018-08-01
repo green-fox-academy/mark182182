@@ -4,4 +4,4 @@
 * [Webpage](https://github.com/mark182182/mark182182.github.io)
 
 ## Link to syllabus:
-* [Coffee time] (https://github.com/green-fox-academy/coffee-syllabus)
+* [Coffee time](https://github.com/green-fox-academy/coffee-syllabus)
