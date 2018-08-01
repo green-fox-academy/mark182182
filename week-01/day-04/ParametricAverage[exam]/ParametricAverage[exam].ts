@@ -6,7 +6,7 @@ while (firstOpen == true) {
         let userInput = prompt("Please type in a number");
         if (userInput != null) {
             addNumbers += parseInt(userInput);
-            document.write(userInput);
+            console.log(userInput);
         }
         if (userInput != null && isNaN(parseInt(userInput))) {
             console.log("Please input numbers only.");
