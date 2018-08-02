@@ -37,7 +37,7 @@ console.log(1357988018575474 % 11 ? false : true);
 let i1: number = 10;
 let i2: number = 3;
 // tell if i1 is higher than i2 squared and smaller than i2 cubed (as a boolean)
-console.log(i1 > Math.pow(i2, 2) && i1 < Math.cbrt(i2));
+console.log(i1 > Math.pow(i2, 2) && i1 < Math.pow(i2, 3));
 
 let j: number = 1521;
 // tell if j is dividable by 3 or 5 (as a boolean)
