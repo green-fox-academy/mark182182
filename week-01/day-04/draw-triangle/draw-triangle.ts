@@ -10,6 +10,6 @@ let lineCount: number = 4;
 // ****
 //
 // The triangle should have as many lines as lineCount is
-for (let drawNumber = 0; drawNumber < lineCount; drawNumber++) {
-    console.log('*');
+for (let drawNumber: string = ''; drawNumber.length <= lineCount ; drawNumber += '*') {
+    console.log(drawNumber);
 }

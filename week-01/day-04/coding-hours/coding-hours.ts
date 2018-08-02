@@ -13,4 +13,4 @@ let hoursSpentWithCoding: number = hours * workdays * weeks;
 let percentageOfCoding: number = hoursSpentWithCoding / (weeks * weeklyWorkhours);
 
 console.log("The number of hours spent with coding: " + hoursSpentWithCoding);
-console.log("The percentage of coding hours: " + percentageOfCoding);
+console.log("The percentage of coding hours: " + (percentageOfCoding * 100));
