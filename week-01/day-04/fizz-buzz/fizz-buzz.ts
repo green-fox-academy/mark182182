@@ -5,7 +5,7 @@
 // and for the multiples of five print “Buzz”.
 // For numbers which are multiples of both three and five print “FizzBuzz”.
 
-for (var x = 1; x <= 100; x++) {
+for (let x = 1; x <= 100; x++) {
 
     if ((x % 3) == 0) {
         if ((x % 3) == 0 && (x % 5) == 0) {
