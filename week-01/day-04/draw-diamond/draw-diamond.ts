@@ -41,9 +41,11 @@ for (let h = 5; h <= lineCount; h++) {
     for (let k = 7; k >= h; k--) {
         if (k === 7) {
             row += '*'
+            console.log("ITT VAGYOK");
         }
         else {
             row += '**';
+            console.log('okes');
         }
     }
     console.log(row);
