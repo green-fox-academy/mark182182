@@ -1,5 +1,5 @@
 'use strict';
-export {};
+export { };
 
 import readline = require('readline');
 import stream = require('stream');
@@ -19,11 +19,11 @@ let addNumbers = 0;
 let firstOpen = true;
 let options = new ReadLineOptions(process.stdin, process.stdout);
 let userInput = readline.createInterface(options);
-
+/*
 while (firstOpen == true) {
     console.log("Please input 5 numbers.");
     for (var x = 0; x < 5; x++) {
-        userInput.question('Please type in a number: ');
+        userInput.question('Please type in a number: ', x)
         if (userInput != null) {
             addNumbers += parseInt(userInput);
             console.log(userInput);
@@ -33,7 +33,20 @@ while (firstOpen == true) {
         }
         firstOpen = false;
         userInput.close();
+
     }
     console.log("The sum of the numbers is: " + addNumbers + ",")
     console.log("The average is: " + addNumbers / x + ".")
+}*/
+for (let inputNumbers: number = 0; inputNumbers < 5; inputNumbers++) {
+    chooseNumbers();
+    console.log("DONT PANIC");
+}
+
+
+function chooseNumbers() {
+    userInput.question('Please type in a number: ', x => {
+        console.log("Your number is: ", x);
+        userInput.close();
+    });
 }

@@ -10,7 +10,6 @@ function substr(str: string, keyword: string): number {
         }
     }
     return (str.search(keyword));
-
 }
 
 //  Example
