@@ -16,10 +16,8 @@ function makingMatches(girls: string[], boys: string[]): string[] {
         }
         else {
             matchMaking.push(boys[element]);
-        }
 
-        console.log(matchMaking);
-        console.log(element);
+        }
     }
     return matchMaking;
 
