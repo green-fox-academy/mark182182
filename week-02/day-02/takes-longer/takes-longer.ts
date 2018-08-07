@@ -10,7 +10,7 @@ let insertString: string = 'always takes longer than';
 
 function fixQoute(qoute: string, insertString: string): string {
 
-    let newQoute: string = qoute.substring(0, 20).concat(qoute.substring(20, 21).concat(insertString)).concat(qoute.substring(20, qoute.length));
+    let newQoute: string = qoute.substring(0, 21).concat(insertString).concat(qoute.substring(20, qoute.length));
     return newQoute;
 }
 console.log(fixQoute(quote, insertString));

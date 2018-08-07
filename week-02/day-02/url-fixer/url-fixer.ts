@@ -6,5 +6,6 @@ export { }
 let url: string = 'https//www.reddit.com/r/nevertellmethebots';
 
 let fixedURL = url.replace('bots', 'odds');
+let fixHTTP = fixedURL.substr(0, 5).concat(':').concat(fixedURL.substr(5, fixedURL.length));
 
-console.log(fixedURL);
+console.log(fixHTTP);
