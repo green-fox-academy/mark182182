@@ -1,4 +1,5 @@
 'use strict';
+export { };
 
 const students: any[] = [
     { name: 'Theodor', age: 3, candies: 2 },
@@ -33,4 +34,4 @@ function logLessCandies(students: object[]): number {
 }
 
 console.log("Candies owned by the students:", logStudentCandies(students));
-console.log("Sum of students age who have less than 5 candies: ",logLessCandies(students));
+console.log("Sum of students age who have less than 5 candies: ", logLessCandies(students));
