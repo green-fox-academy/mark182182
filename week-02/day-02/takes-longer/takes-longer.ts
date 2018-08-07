@@ -10,13 +10,7 @@ let insertString: string = 'always takes longer than';
 
 function fixQoute(qoute: string, insertString: string): string {
 
-    let splitQoute: string[] = qoute.split('');
-    let splitInsertString: string[] = insertString.split('');
-    console.log(splitQoute);
-    let spliceQoute: string[] = splitQoute.splice(22, 0, insertString)
-    console.log(spliceQoute);
-    let joinQoute: string = spliceQoute.join('');
-    // console.log(joinQoute);
-    return joinQoute;
+    let newQoute: string = qoute.substring(0, 20).concat(qoute.substring(20, 21).concat(insertString)).concat(qoute.substring(20, qoute.length));
+    return newQoute;
 }
 console.log(fixQoute(quote, insertString));
