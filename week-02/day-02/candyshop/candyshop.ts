@@ -13,11 +13,9 @@ function sweets(shopItems: any[]): string[] {
     let correctShopList: any[] = [];
     for (let element = 0; element < shopItems.length; element++) {
         if (element === 1) {
-            console.log(element);
             correctShopList.push('Croissant');
         }
         else if (element === 3) {
-            console.log(element);
             correctShopList.push('Ice cream');
         }
         else {
