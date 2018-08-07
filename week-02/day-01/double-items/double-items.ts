@@ -6,5 +6,5 @@ export { };
 // It should print: ['GinGin', 'WhiskeyWhiskey', 'WineWine', 'BeerBeer']`
 
 let drinks = Array<string>('Gin', 'Whiskey', 'Wine', 'Beer');
-let drinksNew = drinks.(function (e) { return '#' + e });
+let drinksNew = drinks.map(function (e) { return e + e });
 console.log(drinksNew);
