@@ -10,10 +10,10 @@ const ctx = canvas.getContext('2d');
 // Create a loop that fills the canvas with rainbow coloreds squares.
 
 function drawRectOnCanvas(size: number, colors: string[]) {
-    for (let drawIt = 0; drawIt < canvas.height; drawIt++) {
+    for (let drawIt = 0; drawIt < 10; drawIt++) {
         ctx.fillStyle = colors[drawIt % colors.length];
-        ctx.fillRect(drawIt * canvas.width / size, drawIt * canvas.width / size, size, size);
+        ctx.fillRect(100 + drawIt * 20, 0 + drawIt * 20, size - drawIt * 40, size - drawIt * 40);
     }
 }
 
-drawRectOnCanvas(20, ['red', 'green', 'blue', 'yellow', 'purple']);
+drawRectOnCanvas(canvas.height, ['red', 'green', 'blue', 'yellow', 'purple']);
