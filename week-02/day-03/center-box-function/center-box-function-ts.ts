@@ -12,7 +12,6 @@ const ctx = canvas.getContext('2d');
 
 function squareDraw(size: number) {
     ctx.fillRect(300, 200, size, size);
-
 }
 
 for (let currentCord = 1; currentCord <= 3; currentCord++) {
