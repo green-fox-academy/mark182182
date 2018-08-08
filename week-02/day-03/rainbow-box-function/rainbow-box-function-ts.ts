@@ -12,7 +12,7 @@ const ctx = canvas.getContext('2d');
 function drawRectOnCanvas(size: number, colors: string[]) {
     for (let drawIt = 0; drawIt < canvas.height; drawIt++) {
         ctx.fillStyle = colors[drawIt % colors.length];
-        ctx.fillRect(300 + size, 200 + size, size, size);
+        ctx.fillRect(drawIt * canvas.width / size, drawIt * canvas.width / size, size, size);
     }
 }
 

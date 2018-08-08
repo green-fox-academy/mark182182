@@ -14,8 +14,9 @@ function drawRectOnCanvas(size: number, colors: string[]) {
         else {
             ctx.fillStyle = colors[drawIt % colors.length];
             ctx.fillRect(drawIt * canvas.width / size, drawIt * size, size, size);
+            ctx.strokeRect(drawIt * canvas.width / size, drawIt * size, size, size);
         }
     }
 }
 
-drawRectOnCanvas(20, ['red', 'green', 'blue', 'yellow', 'purple']);
+drawRectOnCanvas(20, ['purple']);
