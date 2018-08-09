@@ -16,4 +16,4 @@ function drawRectOnCanvas(size: number, colors: string[]) {
     }
 }
 
-drawRectOnCanvas(canvas.height, ['red', 'green', 'blue', 'yellow', 'purple']);
+drawRectOnCanvas(canvas.height, ['red', 'green', 'violet','blue', 'yellow', 'purple', 'magenta']);
