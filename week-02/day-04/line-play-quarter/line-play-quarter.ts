@@ -3,17 +3,18 @@
 const canvas = document.querySelector('.main-canvas') as HTMLCanvasElement;
 const ctx = canvas.getContext('2d');
 const renderTime = document.getElementById('renderTime');
-const numberOfLines = document.getElementById('start');
+const divisionRange = document.getElementById('start');
 const showLineRange = document.getElementById('showLineRange');
 const setButton = document.getElementById('setButton');
 
-let useButton = setButton.addEventListener("click", function (e) {
+const useButton = setButton.addEventListener("click", function (e) {
     location.reload();
 });
 
-let divideCanvasBy: number = 100;
+const spaceBetweenShapeLines: number = 12;
+let divideCanvasBy: number = 4;
 
-divideCanvasBy = numberOfLines.value;
+divideCanvasBy = divisionRange.value;
 showLineRange.value = divideCanvasBy;
 
 window.addEventListener("load", loadTime, false);
@@ -65,7 +66,7 @@ function drawBottomLine(referenceXPoint: number, referenceYPoint: number): void 
     ctx.strokeStyle = 'green';
     ctx.beginPath();
     for (let drawBottom: number = 0; drawBottom <= canvas.width / divideCanvasBy; drawBottom++) {
-        if (drawBottom % 2 == 0) {
+        if (drawBottom % spaceBetweenShapeLines === 0) {
             ctx.moveTo(referenceXPoint, drawBottom + referenceYPoint);
             ctx.lineTo(drawBottom + referenceXPoint, canvas.width / divideCanvasBy + referenceYPoint);
         }
@@ -77,7 +78,7 @@ function drawTopLine(referenceXPoint: number, referenceYPoint: number): void {
     ctx.strokeStyle = 'purple';
     ctx.beginPath();
     for (let drawTop: number = 0; drawTop <= canvas.width / divideCanvasBy; drawTop++) {
-        if (drawTop % 2 == 0) {
+        if (drawTop % spaceBetweenShapeLines === 0) {
             ctx.moveTo(drawTop + referenceXPoint, referenceYPoint);
             ctx.lineTo(canvas.width / divideCanvasBy + referenceXPoint, drawTop + referenceYPoint);
         }
