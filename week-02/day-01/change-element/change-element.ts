@@ -10,6 +10,5 @@ numList.map(function (elementValue) {
     if (elementValue === 3) {
         numList.splice(elementValue, 1, 4);
     }
-    console.log(numList);
 });
 console.log(numList);

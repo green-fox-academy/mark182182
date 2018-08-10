@@ -5,11 +5,8 @@ const ctx = canvas.getContext('2d');
 const renderTime = document.getElementById('renderTime');
 const divisionRange = document.getElementById('start');
 const showLineRange = document.getElementById('showLineRange');
-const setButton = document.getElementById('setButton');
 
-const useButton = setButton.addEventListener("click", function (e) {
-    location.reload();
-});
+divisionRange.onchange = (function () { location.reload(); });
 
 const spaceBetweenShapeLines: number = 12;
 let divideCanvasBy: number = 4;
