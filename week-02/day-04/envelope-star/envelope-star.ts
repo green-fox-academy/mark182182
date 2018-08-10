@@ -15,13 +15,13 @@ function putInside(): void {
 
 function divideCanvas(): void {
   ctx.beginPath();
-  for (let drawLines: number = 1; drawLines < canvas.width; drawLines++) {
+  for (let drawLines: number = 0; drawLines < canvas.width; drawLines++) {
     if (drawLines % (canvas.width / divideCanvasBy) == 0) {
       ctx.moveTo(drawLines, 0);
       ctx.lineTo(drawLines, canvas.width);
     }
   }
-  for (let drawLines: number = 1; drawLines < canvas.width; drawLines++) {
+  for (let drawLines: number = 0; drawLines < canvas.width; drawLines++) {
     if (drawLines % (canvas.width / divideCanvasBy) == 0) {
       ctx.moveTo(0, drawLines);
       ctx.lineTo(canvas.width, drawLines);
@@ -38,9 +38,9 @@ function makeShape(referenceXPoint: number, referenceYPoint: number): void {
 }
 
 function drawUpperLeft(referenceXPoint: number, referenceYPoint: number): void {
-  ctx.strokeStyle = 'deeppink';
+  ctx.strokeStyle = 'green';
   ctx.beginPath();
-  for (let drawUpperLeft: number = 0; drawUpperLeft <= canvas.width / divideCanvasBy; drawUpperLeft++) {
+  for (let drawUpperLeft: number = 1; drawUpperLeft <= canvas.width / divideCanvasBy; drawUpperLeft++) {
     if (drawUpperLeft % spaceBetweenShapeLines === 0) {
       ctx.moveTo(referenceXPoint + drawUpperLeft / 2, canvas.height / 2 + referenceYPoint);
       ctx.lineTo(referenceXPoint + canvas.width / 2, (canvas.height - drawUpperLeft) / 2 + referenceYPoint);
@@ -52,7 +52,7 @@ function drawUpperLeft(referenceXPoint: number, referenceYPoint: number): void {
 function drawUpperRight(referenceXPoint: number, referenceYPoint: number): void {
   ctx.strokeStyle = 'green';
   ctx.beginPath();
-  for (let drawUpperRight: number = 0; drawUpperRight <= canvas.width / divideCanvasBy; drawUpperRight++) {
+  for (let drawUpperRight: number = 1; drawUpperRight <= canvas.width / divideCanvasBy; drawUpperRight++) {
     if (drawUpperRight % spaceBetweenShapeLines === 0) {
       ctx.moveTo(referenceXPoint + canvas.height - drawUpperRight / 2, canvas.height / 2 + referenceYPoint);
       ctx.lineTo(referenceXPoint + (canvas.height / 2), (canvas.height / 2) - drawUpperRight / 2 + referenceYPoint);
@@ -62,21 +62,21 @@ function drawUpperRight(referenceXPoint: number, referenceYPoint: number): void 
 }
 
 function drawLowerLeft(referenceXPoint: number, referenceYPoint: number): void {
-  ctx.strokeStyle = 'purple';
+  ctx.strokeStyle = 'green';
   ctx.beginPath();
-  for (let drawLowerLeft: number = 0; drawLowerLeft <= canvas.width / divideCanvasBy; drawLowerLeft++) {
+  for (let drawLowerLeft: number = 1; drawLowerLeft <= canvas.width / divideCanvasBy; drawLowerLeft++) {
     if (drawLowerLeft % spaceBetweenShapeLines === 0) {
       ctx.moveTo(referenceXPoint + drawLowerLeft / 2, canvas.width / 2 + referenceYPoint);
-      ctx.lineTo(referenceXPoint + canvas.width / 2, canvas.width / 2 + drawLowerLeft / 2 + referenceYPoint);
+      ctx.lineTo(referenceXPoint + canvas.width / 2, (canvas.width + drawLowerLeft) / 2 + referenceYPoint);
     }
     ctx.stroke();
   }
 }
 
 function drawLowerRight(referenceXPoint: number, referenceYPoint: number): void {
-  ctx.strokeStyle = 'red';
+  ctx.strokeStyle = 'green';
   ctx.beginPath();
-  for (let drawLowerRight: number = 0; drawLowerRight <= canvas.width / divideCanvasBy; drawLowerRight++) {
+  for (let drawLowerRight: number = 1; drawLowerRight <= canvas.width / divideCanvasBy; drawLowerRight++) {
     if (drawLowerRight % spaceBetweenShapeLines === 0) {
       ctx.moveTo(referenceXPoint + canvas.height - drawLowerRight / 2, canvas.height / 2 + referenceYPoint);
       ctx.lineTo(referenceXPoint + (canvas.height / 2), (canvas.height / 2) + drawLowerRight / 2 + referenceYPoint);
