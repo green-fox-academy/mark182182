@@ -8,15 +8,15 @@ let triangleSide: number = 0;
 function drawTriangle() {
   ctx.beginPath();
   for (triangleSide; triangleSide <= canvas.height; triangleSide++) {
-    if (triangleSide % 120 == 0) {
-      ctx.moveTo(canvas.height / 2 + triangleSide / 2, triangleSide);
+    if (triangleSide % 20 == 0) {
+      ctx.moveTo(canvas.height / 2 + triangleSide / 2, triangleSide * Math.sqrt(3) / 2);
       ctx.lineTo(triangleSide, canvas.height + triangleSide);
-      ctx.moveTo(canvas.height / 2 - triangleSide / 2, triangleSide);
+      ctx.moveTo(canvas.height / 2 - triangleSide / 2, triangleSide * Math.sqrt(3) / 2);
       ctx.lineTo(canvas.height - triangleSide, canvas.height + triangleSide);
     }
   }
   for (let drawSeparator = 0; drawSeparator <= canvas.height; drawSeparator++) {
-    if (drawSeparator % 120 == 0) {
+    if (drawSeparator % 20 == 0) {
       ctx.moveTo(drawSeparator / 2, canvas.height - drawSeparator);
       ctx.lineTo(canvas.height - drawSeparator / 2, canvas.height - drawSeparator);
     }
