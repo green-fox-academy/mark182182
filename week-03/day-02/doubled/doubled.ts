@@ -17,19 +17,23 @@ function readAFile(fileName: string, charEncode: string) {
 function decryptFile(fileName: string) {
   try {
     if (fs.existsSync(fileName)) {
-      let decryptedList: string[] = [];
-      const fileContent: string[] = readAFile(fileName, charEncode).split('\r\n');
+      let onlyOneLetterList: string[] = [];
+      const fileContent: string[] = readAFile(fileName, charEncode).split('');
       fileContent.forEach(element => {
-        element.split('').forEach(element => {
-          
-        });
+        onlyOneLetterList.push(element)
       });
+      let decryptedList: string = onlyOneLetterList.filter(onlyUnique).join('');
+      console.log(decryptedList);
       // return decryptedList;
     }
   }
   catch (e) {
     e.message;
   }
+}
+
+function onlyUnique(value, index, self) {
+  return self.indexOf(value) === index;
 }
 
 decryptFile('duplicated-chars.txt')
