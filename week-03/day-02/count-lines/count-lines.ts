@@ -25,9 +25,6 @@ function countLines(fileName: string, charEncode: string): number {
         }
       })
       console.log(countLines);
-      // for (let lineCount = 0; lineCount < fileContent[0].length; lineCount++) { 
-      //   console.log(lineCount);
-      // }
     }
   }
   catch (e) {
