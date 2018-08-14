@@ -15,23 +15,51 @@ function readAFile(fileName: string, charEncode: string) {
   return fs.readFileSync(fileName, charEncode);
 }
 
-function countLines(fileName: string, charEncode: string): number {
+function uniqueIPs(fileName: string, charEncode: string): string[] {
   try {
     if (fs.existsSync(fileName)) {
       const fileContent: string[] = readAFile(fileName, charEncode).split('\r\n');
-      let countLines: number = 0;
-      fileContent.forEach(elem => {
-        if (elem) {
-          countLines++;
-        }
-      })
-      console.log(countLines);
+      let listOfIPAdresses: string[] = [];
+      fileContent.filter(element => {
+        listOfIPAdresses.push(element.substring(27, 38));
+      });
+      let listOfUniqueAdresses = listOfIPAdresses.filter(onlyUnique);
+      return listOfUniqueAdresses;
     }
   }
   catch (e) {
-    return 0;
+    return e.message;
   }
-
 }
 
-countLines('my-file.txt', charEncode);
+function onlyUnique(value, index, self) {
+  return self.indexOf(value) === index;
+}
+
+function ratioOfGetPost(fileName: string, charEncode: string): number {
+  try {
+    if (fs.existsSync(fileName)) {
+      const fileContent: string[] = readAFile(fileName, charEncode).split('\r\n');
+      let listOfGETs: string[] = [];
+      listOfGETs = fileContent.map(element => {
+        if (element.match('GET')) {
+          return element;
+        }
+      }).filter(element => { return element != undefined })
+
+      let listOfPOSTs: string[] = [];
+      listOfPOSTs = fileContent.map(element => {
+        if (element.match('POST')) {
+          return element;
+        }
+      }).filter(element => { return element != undefined })
+      return listOfGETs.length / listOfPOSTs.length;
+    }
+  }
+  catch (e) {
+    return e.message;
+  }
+}
+
+console.log(uniqueIPs('logs.txt', charEncode));
+console.log(ratioOfGetPost('logs.txt', charEncode));
