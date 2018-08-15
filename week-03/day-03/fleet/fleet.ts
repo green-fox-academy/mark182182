@@ -1,15 +1,18 @@
 import { Thing } from "./thing";
 
 class Fleet {
-    private things: Thing[];
+  private things: Thing[];
+  constructor() {
+    this.things = [];
+  }
 
-    constructor() {
-        this.things = [];
-    }
+  add(thing: Thing) {
+    this.things.push(thing);
+  }
 
-    add(thing: Thing) {
-        this.things.push(thing);
-    }
+  print() {
+    console.log(this.things);
+  }
 }
 
 export { Fleet };

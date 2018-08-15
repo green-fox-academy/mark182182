@@ -10,6 +10,19 @@ let fleet = new Fleet();
 4. [x] Eat lunch
 // Hint: You have to create a `print()` method as well */
 
-function print() {
-for(let printElement = 0; printElement < 4)
-}
+const putXIntoList: string = 'X';
+
+let getMilk = new Thing('Get milk');
+let removeObs = new Thing('Remove the obstacles');
+let standUp = new Thing('Stand up');
+let eatLunch = new Thing('Eat lunch');
+
+
+fleet.add(getMilk);
+fleet.add(removeObs);
+fleet.add(standUp);
+standUp.complete();
+fleet.add(eatLunch);
+eatLunch.complete();
+
+fleet.print();
