@@ -14,13 +14,9 @@ function initializeDominoes(): Domino[] {
 }
 
 function print(dominoes: Domino[]) {
-  let dominoesSorted: number[] = [];
   dominoes.forEach(function (value) {
-  dominoesSorted.push(value.values[1]);
+    console.log(value);
   });
-  dominoesSorted.sort();
-  return dominoesSorted;
-
 }
 
 let dominoes = initializeDominoes();
@@ -28,4 +24,18 @@ let dominoes = initializeDominoes();
 /** Order them into one snake where the adjacent dominoes have the same numbers on their adjacent sides */
 /** eg: [2, 4], [4, 3], [3, 5] ... */
 
+function sortDominoes(dominoes: Domino[]) {
+  let sortedDominoes: any[] = [];
+  sortedDominoes.push(dominoes[0]);
+  for (let i: number = 0; i < dominoes.length - 1; i++) {
+    for (let k: number = 0; k < dominoes.length; k++) {
+      if (sortedDominoes[i].values[1] === dominoes[k].values[0]) {
+        sortedDominoes.push(dominoes[k]);
+      }
+    }
+  }
+  console.log(sortedDominoes);
+}
+
 console.log(print(dominoes));
+console.log(sortDominoes(dominoes));
