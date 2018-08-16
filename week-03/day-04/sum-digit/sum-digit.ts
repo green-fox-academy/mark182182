@@ -5,10 +5,18 @@ export { };
 // Note that mod (%) by 10 yields the rightmost digit (126 % 10 is 6), while 
 // divide (/) by 10 removes the rightmost digit (126 / 10 is 12).
 
+// sumDigit(126) = 6+2+1 => 9
+// sumDigit(126) = sumDigit(126 % 10) + sumDigit(12 % 10) + sumDigit(12 / 10)
+// sumDigit(126 % 10) = 6
+// sumDigit(126 / 10) = 12
+// sumDigit(12 % 10) = 2
+// sumDigit(12 / 10) = 1 
+// Need to floor because 'number' types include float numbers too
 
 function sumDigit(n: number): number {
-  if (n > 0) {
-    return n + sumDigit(n - 1);
+  let addNumbers: number = Math.floor(n % 10) + Math.floor((n / 10) % 10) + Math.floor((n / 10) / 10);
+  if (n != addNumbers) { 
+    return sumDigit(addNumbers);
   }
   else if (n < 0) {
     throw new Error('Number must be higher than 0');
