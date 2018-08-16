@@ -2,28 +2,39 @@
 
 const canvas = document.querySelector('.main-canvas') as HTMLCanvasElement;
 const ctx = canvas.getContext('2d');
+
 const centerX: number = canvas.width / 2;
 const centerY: number = canvas.height / 2;
 
-canvas.onmousemove = function (e) {
 
-  let rect = this.getBoundingClientRect(),
-    xCord = e.clientX - rect.left,
-    yCord = e.clientY - rect.top
-  recursiveSquares(xCord, yCord);
+let divideCanvasBy: number = 3;
 
-}
+function draw(startX, startY, len, angle) {
+  ctx.shadowBlur = 15;
+  ctx.shadowColor = "rgba(0,0,0,0.8)";
 
+  ctx.beginPath();
+  ctx.save();
 
-
-function recursiveSquares(size: number, distance: number) {
-  if (size > 0) {
-    let x: number = centerX - size / 2;
-    let y: number = centerY - size / 2;
-    ctx.strokeRect(x, y, size, size);
-
-    let newSize: number = size - distance;
-    let newDistance: number = distance + 5;
-    recursiveSquares(newSize, newDistance);
+  ctx.translate(startX, startY);
+  ctx.rotate(angle * Math.PI / 180);
+  ctx.moveTo(0, 0);
+  ctx.lineTo(0, -len);
+  ctx.stroke();
+  if (angle > 0) {
+    ctx.bezierCurveTo(10, -len / 2, 10, -len / 2, 0, -len);
+  } else {
+    ctx.bezierCurveTo(-10, -len / 2, -10, -len / 2, 0, -len);
   }
+  if (len < 10) {
+    ctx.restore();
+    return;
+  }
+
+  draw(0, -len, len * 0.8, -15);
+  draw(0, -len, len * 0.8, 15);
+
+  ctx.restore();
 }
+
+draw(350, 600, 120, 0);
