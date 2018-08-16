@@ -10,12 +10,12 @@ export { };
 // Every animal can play() which increases both by one
 
 class Animal {
-  hunger: number;
-  thirst: number;
+  private hunger: number;
+  private thirst: number;
 
-  constructor() {
-    this.hunger = 50;
-    this.thirst = 50;
+  constructor(hunger: number = 50, thirst: number = 50) {
+    this.hunger = hunger;
+    this.thirst = thirst;
   }
   eat() {
     this.hunger = this.hunger - 1;
@@ -29,7 +29,7 @@ class Animal {
   }
 }
 
-let monkey = new Animal();
+let monkey = new Animal(100, 100);
 
 monkey.eat();
 console.log(monkey);
