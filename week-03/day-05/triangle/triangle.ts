@@ -3,48 +3,26 @@
 const canvas = document.querySelector('.main-canvas') as HTMLCanvasElement;
 const ctx = canvas.getContext('2d');
 
-const centerX: number = canvas.width / 2;
-const centerY: number = canvas.height / 2;
+const startCoordX: number = canvas.width / 2;
+const startCoordY: number = canvas.width / 2;
+const size: number = 200;
 
-
-function drawTriangleFractal(centerX: number, centerY: number) {
-  ctx.beginPath();
-  ctx.save();
-  ctx.moveTo(centerX, centerY);
-  ctx.lineTo(0, 0);
-  ctx.stroke();
-  drawTriangleFractal(centerX + 10, centerY + 10);
-  ctx.restore();
+function drawFractal(startCoordX: number, startCoordY: number, size: number) {
+  ctx.translate(-size / 4, -size / 4);
+  ctx.strokeRect(0, 0, size / 2, size / 2);
+  ctx.translate(size, 0);
+  ctx.strokeRect(0, 0, size / 2, size / 2);
+  ctx.translate(0, size);
+  ctx.strokeRect(0, 0, size / 2, size / 2);
+  ctx.translate(-size, 0);
+  ctx.strokeRect(0, 0, size / 2, size / 2);
+  drawFractal(startCoordX * size, startCoordY * size, size - (size / 2));
 }
-drawTriangleFractal(centerX, centerY);
 
-// tree fractal
-// function draw(startX, startY, len, angle) {
-//   ctx.shadowBlur = 15;
-//   ctx.shadowColor = "rgba(0,0,0,0.8)";
+function drawSquare(startCoordX: number, startCoordY: number, size: number) {
+  ctx.translate(startCoordX - size / 2, startCoordY - size / 2);
+  ctx.strokeRect(0, 0, size, size);
+  drawFractal(startCoordX, startCoordY, size);
+}
 
-//   ctx.beginPath();
-//   ctx.save();
-
-//   ctx.translate(startX, startY);
-//   ctx.rotate(angle * Math.PI / 180);
-//   ctx.moveTo(0, 0);
-//   ctx.lineTo(0, -len);
-//   ctx.stroke();
-//   if (angle > 0) {
-//     ctx.bezierCurveTo(10, -len / 2, 10, -len / 2, 0, -len);
-//   } else {
-//     ctx.bezierCurveTo(-10, -len / 2, -10, -len / 2, 0, -len);
-//   }
-//   if (len < 10) {
-//     ctx.restore();
-//     return;
-//   }
-
-//   draw(0, -len, len * 0.8, -15);
-//   draw(0, -len, len * 0.8, 15);
-
-//   ctx.restore();
-// }
-
-// draw(350, 600, 120, 0);
+drawSquare(startCoordX, startCoordY, size);
