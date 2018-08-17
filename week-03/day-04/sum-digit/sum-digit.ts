@@ -14,8 +14,12 @@ export { };
 // Need to floor because 'number' types include float numbers too
 
 function sumDigit(n: number): number {
-  let addNumbers: number = Math.floor(n % 10) + Math.floor((n / 10) % 10) + Math.floor((n / 10) / 10);
-  if (n != addNumbers) { 
+  let rightMost: number = Math.floor((n / 10) / 10);
+  let leftMost: number = Math.floor((n / 10) % 10);
+  let middleNumber: number = Math.floor(n % 10);
+
+  let addNumbers: number = leftMost + rightMost + middleNumber;
+  if (n != addNumbers) {
     return sumDigit(addNumbers);
   }
   else if (n < 0) {
