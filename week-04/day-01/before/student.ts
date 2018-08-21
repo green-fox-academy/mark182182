@@ -2,8 +2,8 @@
 import { Person } from './person';
 
 class Student extends Person {
-  previousOrganization: string;
-  skippedDays: number;
+  private previousOrganization: string;
+  private skippedDays: number;
 
   constructor(name = 'Jane Doe', age = 30, gender = 'female', previousOrganization = 'The School of Life', skippedDays = 0) {
     super(name, age, gender);

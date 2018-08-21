@@ -1,13 +1,12 @@
 'use strict';
+import { Person } from './person';
 
-class Sponsor {
-  name: string;
-  age: number;
-  gender: string;
-  company: string;
-  hiredStudents: number;
+class Sponsor extends Person {
+  private company: string;
+  private hiredStudents: number;
 
   constructor(name = 'Jane Doe', age = 30, gender = 'female', company = 'Google', hiredStudents = 0) {
+    super(name, age, gender);
     if (gender === 'female' || gender === 'male') {
       this.gender = gender;
     }

@@ -1,9 +1,9 @@
 'use strict';
 
 class Person {
-  name: string;
-  age: number;
-  gender: string;
+  protected name: string;
+  protected age: number;
+  protected gender: string;
 
   constructor(name = 'Jane Doe', age = 30, gender = 'female') {
     if (gender === 'female' || gender === 'male') {

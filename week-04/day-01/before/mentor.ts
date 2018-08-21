@@ -1,12 +1,11 @@
 'use strict';
+import { Person } from './person';
 
-class Mentor {
-  name: string;
-  age: number;
-  gender: string;
-  level: string;
+class Mentor extends Person {
+  private level: string;
 
   constructor(name = 'Jane Doe', age = 30, gender = 'female', level = 'intermediate') {
+    super(name, age, gender);
     if (gender === 'female' || gender === 'male') {
       this.gender = gender;
     }
