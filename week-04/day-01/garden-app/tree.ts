@@ -2,18 +2,15 @@
 
 class Tree {
   public color: string;
-  public waterLevel: number;
+  public waterLevel: number = 0;
   public needWater: boolean;
   public waterAbsorb: number;
-  constructor(color: string = 'purple', waterLevel: number = 0) {
+  constructor(color: string = 'purple') {
     this.color = color;
-    if (this.waterLevel >= 0 || this.waterLevel <= 100) {
-      this.waterLevel = waterLevel;
-    }
-    if (waterLevel < 10) {
+    if (this.waterLevel < 10) {
       this.needWater = true;
     }
-    else if (waterLevel >= 10) {
+    else if (this.waterLevel >= 10) {
       this.needWater = false;
     }
     this.waterAbsorb = 0.4;

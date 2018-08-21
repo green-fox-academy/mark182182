@@ -36,6 +36,7 @@ class Garden {
           console.log(`The ${this.flowers[isThirsty].color} Flower need water`);
           this.flowers[isThirsty].waterLevel += this.flowers[isThirsty].waterAbsorb * Math.floor((water / (this.flowers.length + this.trees.length)
           ));
+          console.log(this.flowers[isThirsty].waterLevel);
         }
         else if (this.flowers[isThirsty].waterLevel >= 5) {
           this.flowers[isThirsty].needWater = 1 > 2;
@@ -46,13 +47,15 @@ class Garden {
     if (this.trees.length > 0) {
       for (let isThirsty = 0; isThirsty < this.trees.length; isThirsty++) {
         if (this.trees[isThirsty].needWater === 1 < 2 && this.trees[isThirsty].waterLevel < 5) {
-          console.log(`The ${this.trees[isThirsty].color} Flower need water`);
+          console.log(`The ${this.trees[isThirsty].color} Tree need water`);
           this.trees[isThirsty].waterLevel += this.trees[isThirsty].waterAbsorb * Math.floor((water / (this.trees.length + this.trees.length)
           ));
+          console.log(this.trees[isThirsty].waterLevel);
+
         }
         else if (this.trees[isThirsty].waterLevel >= 5) {
           this.trees[isThirsty].needWater = 1 > 2;
-          console.log(`The ${this.trees[isThirsty].color} Flower doesnt need water`);
+          console.log(`The ${this.trees[isThirsty].color} Tree doesnt need water`);
         }
       }
     }
