@@ -13,7 +13,7 @@ class Flower {
     else if (this.waterLevel >= 5) {
       this.needWater = false;
     }
-    this.waterAbsorb = 0.4;
+    this.waterAbsorb = 0.75;
   }
 }
 

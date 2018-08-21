@@ -15,6 +15,8 @@ myGarden.addFlower(yellowFlower);
 myGarden.addFlower(blueFlower)
 myGarden.addTree(purpleTree);
 myGarden.addTree(orangeTree);
-myGarden.waterPlants(0);
+myGarden.needWater();
 myGarden.waterPlants(40);
+myGarden.needWater();
 myGarden.waterPlants(70);
+myGarden.needWater();
