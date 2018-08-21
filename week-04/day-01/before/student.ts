@@ -1,21 +1,12 @@
 'use strict';
+import { Person } from './person';
 
-class Student {
-  name: string;
-  age: number;
-  gender: string;
+class Student extends Person {
   previousOrganization: string;
   skippedDays: number;
 
   constructor(name = 'Jane Doe', age = 30, gender = 'female', previousOrganization = 'The School of Life', skippedDays = 0) {
-    if (gender === 'female' || gender === 'male') {
-      this.gender = gender;
-    }
-    else {
-      throw new Error;
-    }
-    this.name = name;
-    this.age = age;
+    super(name, age, gender);
     this.previousOrganization = previousOrganization;
     this.skippedDays = skippedDays;
   }
