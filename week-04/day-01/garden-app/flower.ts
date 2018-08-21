@@ -5,15 +5,15 @@ class Flower {
   public waterLevel: number;
   public needWater: boolean;
   public waterAbsorb: number;
-  constructor(color = 'yellow', waterLevel = 0) {
+  constructor(color: string = 'yellow', waterLevel: number = 0) {
     this.color = color;
     if (this.waterLevel >= 0 || this.waterLevel <= 100) {
       this.waterLevel = waterLevel;
     }
-    if (waterLevel < 10) {
+    if (waterLevel < 5) {
       this.needWater = true;
     }
-    else if (waterLevel >= 10) {
+    else if (waterLevel >= 5) {
       this.needWater = false;
     }
     this.waterAbsorb = 0.4;

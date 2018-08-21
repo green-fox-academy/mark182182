@@ -15,4 +15,4 @@ myGarden.addFlower(yellowFlower);
 myGarden.addFlower(blueFlower)
 myGarden.addTree(purpleTree);
 myGarden.addTree(orangeTree);
-myGarden.waterPlants(40);
+myGarden.waterPlants(10);

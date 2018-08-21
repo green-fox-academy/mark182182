@@ -5,7 +5,7 @@ class Tree {
   public waterLevel: number;
   public needWater: boolean;
   public waterAbsorb: number;
-  constructor(color = 'purple', waterLevel = 0) {
+  constructor(color: string = 'purple', waterLevel: number = 0) {
     this.color = color;
     if (this.waterLevel >= 0 || this.waterLevel <= 100) {
       this.waterLevel = waterLevel;
