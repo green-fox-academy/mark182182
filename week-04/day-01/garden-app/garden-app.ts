@@ -11,3 +11,5 @@ let purpleTree = new Tree('purple', 24);
 myGarden.addFlower(yellowFlower);
 myGarden.addTree(purpleTree);
 myGarden.printGarden();
+myGarden.waterPlants(5);
+myGarden.printGarden();

@@ -1,9 +1,9 @@
 'use strict';
 
 class Flower {
-  color: string;
-  waterLevel: number;
-  needWater: boolean;
+  private color: string;
+  private waterLevel: number;
+  private needWater: boolean;
   constructor(color = 'yellow', waterLevel = 0) {
     this.color = color;
     if (waterLevel >= 0 || waterLevel <= 100) {
