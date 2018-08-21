@@ -4,12 +4,15 @@ import { Garden } from './garden';
 import { Flower } from './flower';
 import { Tree } from './tree';
 
-let myGarden = new Garden();
-let yellowFlower = new Flower('yellow', 20);
-let purpleTree = new Tree('purple', 24);
+let myGarden: Garden = new Garden();
+let yellowFlower: Flower = new Flower('yellow', 0);
+let blueFlower: Flower = new Flower('blue', 0);
+let purpleTree: Tree = new Tree('purple', 0);
+let orangeTree: Tree = new Tree('orange', 0);
+
 
 myGarden.addFlower(yellowFlower);
+myGarden.addFlower(blueFlower)
 myGarden.addTree(purpleTree);
-myGarden.printGarden();
-myGarden.waterPlants(5);
-myGarden.printGarden();
+myGarden.addTree(orangeTree);
+myGarden.waterPlants(40);

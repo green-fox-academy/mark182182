@@ -1,34 +1,22 @@
 'use strict';
 
 class Tree {
-  private color: string;
-  private waterLevel: number;
-  private needWater: boolean;
+  public color: string;
+  public waterLevel: number;
+  public needWater: boolean;
+  public waterAbsorb: number;
   constructor(color = 'purple', waterLevel = 0) {
     this.color = color;
-    if (waterLevel >= 0 || waterLevel <= 100) {
+    if (this.waterLevel >= 0 || this.waterLevel <= 100) {
       this.waterLevel = waterLevel;
     }
-    if (this.waterLevel < 10) {
-      this.needWater = 1 < 2;
+    if (waterLevel < 10) {
+      this.needWater = true;
     }
-    else {
-      this.needWater = 1 > 2;
+    else if (waterLevel >= 10) {
+      this.needWater = false;
     }
-  }
-
-  isHungry(): boolean {
-    if (this.waterLevel < 10) {
-      return this.needWater = 1 < 2;
-    }
-    else {
-      return this.needWater = 1 > 2;
-    }
-  }
-
-
-  water(waterAmount: number) {
-    this.waterLevel += waterAmount / 40;
+    this.waterAbsorb = 0.4;
   }
 }
 
