@@ -1,20 +1,16 @@
 'use strict';
+import { Plant } from './plant';
 
-class Tree {
-  public color: string;
-  public waterLevel: number = 0;
-  public needWater: boolean;
-  public waterAbsorb: number;
-  constructor(color: string = 'purple') {
+class Tree extends Plant {
+  constructor(color: string = 'purple', waterLevel: number = 0, needWater: boolean = true, waterAbsorb: number = 0.4) {
+    super(color, waterLevel, needWater, waterAbsorb);
     this.color = color;
-    if (this.waterLevel < 10) {
+    if (this.waterLevel < 5) {
       this.needWater = true;
     }
-    else if (this.waterLevel >= 10) {
+    else if (this.waterLevel >= 5) {
       this.needWater = false;
     }
-    this.waterAbsorb = 0.4;
   }
 }
-
 export { Tree };
