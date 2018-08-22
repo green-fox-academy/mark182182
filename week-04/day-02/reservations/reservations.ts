@@ -5,9 +5,9 @@ import { daysOfTheWeek } from './daysoftheweek';
 class Reservation implements Reservationy, daysOfTheWeek {
   day: string[];
   private reservationList: string[];
-  constructor() {
-    this.reservationList = ['A0A0B0B0'];
 
+  constructor() {
+    this.reservationList = [];
   }
 
   addReservation(reservationCode: string, ) {
