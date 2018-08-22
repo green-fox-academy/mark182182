@@ -1,5 +1,3 @@
-import { getCurves } from "crypto";
-
 class DiceSet {
     // You have a `DiceSet` class which has a list for 6 dices
     // You can roll all of them with roll()
@@ -49,16 +47,3 @@ do {
     diceSet.getCurrent();
 }
 while (!diceSet.dices.every(checkDices));
-
-//   diceSet.roll();
-//   diceSet.getCurrent();
-//   console.log("------------------");
-//   diceSet.reroll();
-//   diceSet.getCurrent();
-//   console.log("------------------");
-//   diceSet.getCurrent(5);
-//   diceSet.reroll();
-//   diceSet.getCurrent();
-//   console.log("------------------");
-//   diceSet.reroll(4);
-//   diceSet.getCurrent();

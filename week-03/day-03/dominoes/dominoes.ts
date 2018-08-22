@@ -26,16 +26,22 @@ let dominoes = initializeDominoes();
 
 function sortDominoes(dominoes: Domino[]) {
   let sortedDominoes: any[] = [];
-  sortedDominoes.push(dominoes[0]);
-  for (let i: number = 0; i < dominoes.length - 1; i++) {
-    for (let k: number = 0; k < dominoes.length; k++) {
-      if (sortedDominoes[i].values[1] === dominoes[k].values[0]) {
-        sortedDominoes.push(dominoes[k]);
-      }
-    }
-  }
+  let filteredDominoes: number[] = [];
+  dominoes.forEach(element => { sortedDominoes.push(element.values) });
   console.log(sortedDominoes);
+  sortedDominoes.sort();
+  console.log(sortedDominoes);
+  for (let filterElements = 0; filterElements < sortedDominoes.length; filterElements++) {
+    sortedDominoes.filter(element => {
+      for (let currentElement = 0; currentElement < sortedDominoes.length; currentElement++) {
+        if (element[0] === sortedDominoes[filterElements][currentElement + 1]) {
+          filteredDominoes.push(element);
+        }
+      }
+    });
+  }
+  console.log(filteredDominoes);
+
 }
 
-console.log(print(dominoes));
-console.log(sortDominoes(dominoes));
+sortDominoes(dominoes);
