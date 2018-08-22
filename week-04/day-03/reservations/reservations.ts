@@ -1,32 +1,33 @@
 import { Reservationy } from './reservationy';
 import { daysOfTheWeek } from './daysoftheweek';
+import { generateCode } from './generatecode';
 'use strict';
 
 class Reservation implements Reservationy, daysOfTheWeek {
-  day: string[];
+  days: string[];
   private reservationList: string[][];
 
   constructor() {
     this.reservationList = [];
   }
 
-  addReservation(reservationCode: string) {
-    this.reservationList.push([reservationCode], [this.generateDay()]);
+  addReservation() {
+    this.reservationList.push([generateCode()], [this.getDowBooking()]);
   }
   getReservationList(): string[][] {
     return this.reservationList;
   }
   getDowBooking(): string {
-    return this.reservationList[1][0];
+    return this.generateDay();
 
   }
   getCodeBooking(): string {
-    return this.reservationList[0][0];
+    return generateCode();
   }
 
   generateDay(): string {
-    this.day = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'];
-    return this.day[Math.floor(Math.random() * 7)];
+    this.days = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'];
+    return this.days[Math.floor(Math.random() * 7)];
   }
 }
 

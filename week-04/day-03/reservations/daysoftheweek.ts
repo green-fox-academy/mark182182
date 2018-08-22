@@ -1,7 +1,7 @@
 'use strict';
 
 interface daysOfTheWeek {
-  day: string[];
+  days: string[];
   generateDay(): string;
 }
 

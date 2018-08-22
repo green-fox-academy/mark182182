@@ -1,10 +1,17 @@
 import { Reservation } from "./reservations";
-import { generateCode } from "./generatecode";
 
 'use strict';
 
 let newReservation: Reservation = new Reservation();
 for (let fillListWithItems: number = 0; fillListWithItems < 10; fillListWithItems++) {
-  newReservation.addReservation(generateCode());
+  newReservation.addReservation();
 }
-console.log(`Booking# ${newReservation.getCodeBooking()} for ${newReservation.getDowBooking()}`);
+
+for (let cycleThroughReservations = 0; cycleThroughReservations < newReservation.getReservationList().length; cycleThroughReservations++) {
+  if (cycleThroughReservations % 2 == 0) {
+    console.log(`Booking# ${newReservation.getReservationList()[cycleThroughReservations]} for ${newReservation.getReservationList()[cycleThroughReservations]}`);
+  }
+  else {
+    console.log(`Booking# ${newReservation.getReservationList()[cycleThroughReservations]} for ${newReservation.getReservationList()[cycleThroughReservations]}`);
+  }  
+}
