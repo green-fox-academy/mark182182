@@ -7,11 +7,8 @@ for (let fillListWithItems: number = 0; fillListWithItems < 10; fillListWithItem
   newReservation.addReservation();
 }
 
-for (let cycleThroughReservations = 0; cycleThroughReservations < newReservation.getReservationList().length; cycleThroughReservations++) {
-  if (cycleThroughReservations % 2 == 0) {
-    console.log(`Booking# ${newReservation.getReservationList()[cycleThroughReservations]} for ${newReservation.getReservationList()[cycleThroughReservations]}`);
+for (let currentCode = 0, currentDay = 1; currentCode < newReservation.getReservationList().length / 2, currentDay < newReservation.getReservationList().length; currentCode++ , currentDay++) {
+  if (currentCode % 2 === 0) {
+    console.log(`Booking# ${newReservation.getReservationList()[currentCode]} for ${newReservation.getReservationList()[currentDay]}`);
   }
-  else {
-    console.log(`Booking# ${newReservation.getReservationList()[cycleThroughReservations]} for ${newReservation.getReservationList()[cycleThroughReservations]}`);
-  }  
 }
