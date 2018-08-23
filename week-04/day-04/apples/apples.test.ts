@@ -1,8 +1,11 @@
 'use strict';
 
-import { test } from 'tape';
-import { Apples } from './apples';
+import { Apple } from './apples';
 
-test(){
-  test.equal(myobject.Apple);
-};
+const test = require('tape');
+
+test('Check if object returns apple', t => {
+  const myobject = Apple;
+  t.equal('apple', myobject.getApple(), 'Should be equal');
+  t.end();
+});

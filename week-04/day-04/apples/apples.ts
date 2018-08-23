@@ -1,6 +1,6 @@
 'use strict';
 
-export class Apples {
+export const Apple = {
   getApple(): string {
     return 'apple';
   }
