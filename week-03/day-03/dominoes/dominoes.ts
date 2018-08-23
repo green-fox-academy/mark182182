@@ -30,23 +30,14 @@ function sortDominoes(dominoes: Domino[]) {
   dominoes.forEach(element => { sortedDominoes.push(element.values) });
   filteredDominoes.push(sortedDominoes[0]);
   console.log(sortedDominoes);
-  sortedDominoes.forEach(sortedElement => {
-    filteredDominoes.forEach(filteredElement => {
-      if (sortedElement[0] === filteredElement[1]) {
-        filteredDominoes.push(sortedElement);
-      };
-    })
+  sortedDominoes.filter((value, index, array) => {
+    console.log(value);
+
+    if (value === filteredDominoes[value]) {
+      return value;
+    }
   });
-  sortedDominoes.forEach(sortedElement => {
-    filteredDominoes.forEach(filteredElement => {
-      if (sortedElement[0] === filteredElement[1]) {
-        if (filteredDominoes) {
-          filteredDominoes.push(sortedElement);
-        }
-      };
-    })
-  });
-  console.log(filteredDominoes);
+  console.log(sortedDominoes);
 }
 
 sortDominoes(dominoes);
