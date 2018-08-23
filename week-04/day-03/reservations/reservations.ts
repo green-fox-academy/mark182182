@@ -12,7 +12,7 @@ class Reservation implements Reservationy, daysOfTheWeek {
   }
 
   addReservation() {
-    this.reservationList.push([generateCode()], [this.getDowBooking()]);
+    this.reservationList.push([this.getCodeBooking()], [this.getDowBooking()]);
   }
   getReservationList(): string[][] {
     return this.reservationList;
@@ -27,7 +27,7 @@ class Reservation implements Reservationy, daysOfTheWeek {
 
   generateDay(): string {
     this.days = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'];
-    return this.days[Math.floor(Math.random() * 7)];
+    return this.days[~~(Math.random() * 7)];
   }
 }
 
