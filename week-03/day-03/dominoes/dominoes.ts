@@ -1,6 +1,7 @@
 'use strict';
 
 import { Domino } from "./domino";
+import { networkInterfaces } from "os";
 
 function initializeDominoes(): Domino[] {
   let dominoes = [];
@@ -30,16 +31,16 @@ function sortDominoes(dominoes: Domino[]) {
   dominoes.forEach(element => { sortedDominoes.push(element.values) });
   console.log(sortedDominoes);
   sortedDominoes.sort();
+  filteredDominoes.push(sortedDominoes[0]);
   console.log(sortedDominoes);
-  for (let filterElements = 0; filterElements < sortedDominoes.length; filterElements++) {
-    sortedDominoes.filter(element => {
-      for (let currentElement = 0; currentElement < sortedDominoes.length; currentElement++) {
-        if (element[0] === sortedDominoes[filterElements][currentElement + 1]) {
-          filteredDominoes.push(element);
-        }
-      }
-    });
-  }
+  sortedDominoes.forEach(sortedElement => {
+    filteredDominoes.forEach(filteredElement => {
+      if (sortedElement[0] === filteredElement[1]) {
+        filteredDominoes.push(sortedElement);
+      };
+    })
+  });
+
   console.log(filteredDominoes);
 
 }
