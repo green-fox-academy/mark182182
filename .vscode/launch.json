@@ -8,7 +8,7 @@
             "type": "node",
             "request": "launch",
             "name": "Program indítása",
-            "program": "${workspaceFolder}/week-01\\day-04\\draw-pyramid\\draw-pyramid.ts",
+            "program": "${workspaceFolder}/week-04\\day-04\\anagram\\anagram.ts",
             "outFiles": [
                 "${workspaceFolder}/**/*.js"
             ]
