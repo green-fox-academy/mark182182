@@ -25,19 +25,20 @@ let dominoes = initializeDominoes();
 /** eg: [2, 4], [4, 3], [3, 5] ... */
 
 function sortDominoes(dominoes: Domino[]) {
-  let sortedDominoes: any[] = [];
-  let filteredDominoes: number[] = [];
-  dominoes.forEach(element => { sortedDominoes.push(element.values) });
-  filteredDominoes.push(sortedDominoes[0]);
-  console.log(sortedDominoes);
-  sortedDominoes.filter((value, index, array) => {
-    console.log(value);
+  let dominoElements: any[] = [];
+  let filteredDominoes: any[] = [];
+  dominoes.forEach(element => { dominoElements.push(element.values) });
+  filteredDominoes.push(dominoElements[0]);
+  console.log(dominoElements);
 
-    if (value === filteredDominoes[value]) {
-      return value;
-    }
-  });
-  console.log(sortedDominoes);
+  for (let currentElement = 0; currentElement < dominoElements.length - 1; currentElement++) {
+    dominoElements.forEach((value, index, array) => {
+      if (filteredDominoes[currentElement][1] === value[0] && filteredDominoes.indexOf(value) === -1) {
+        filteredDominoes.push(value);
+      }
+    });
+  }
+  console.log(filteredDominoes);
 }
 
 sortDominoes(dominoes);
