@@ -36,14 +36,33 @@ class DiceSet {
     }
 }
 
-let diceSet = new DiceSet();
+let diceSet: DiceSet = new DiceSet();
 
-function checkDices(dice) {
-    return dice == 6;
+function checkDices(dice): boolean {
+    return dice === 6;
 }
+
 diceSet.roll();
-do {
-    diceSet.reroll();
-    diceSet.getCurrent();
+while (!diceSet.dices.every(checkDices)) {
+    if (diceSet.dices[0] !== 6) {
+        diceSet.reroll(0);
+    }
+    else if (diceSet.dices[1] !== 6) {
+        diceSet.reroll(1);
+    }
+    else if (diceSet.dices[2] !== 6) {
+        diceSet.reroll(2);
+    }
+    else if (diceSet.dices[3] !== 6) {
+        diceSet.reroll(3);
+    }
+    else if (diceSet.dices[4] !== 6) {
+        diceSet.reroll(4);
+    }
+    else if (diceSet.dices[5] !== 6) {
+        diceSet.reroll(5);
+    }
+    if (diceSet.dices.every(checkDices)) {
+        diceSet.getCurrent();
+    }
 }
-while (!diceSet.dices.every(checkDices));
