@@ -58,7 +58,7 @@ class Garden {
     if (this.trees.length > 0) {
       for (let isThirsty = 0; isThirsty < this.trees.length; isThirsty++) {
         if (this.trees[isThirsty].getNeedWater() === 1 < 2 && this.trees[isThirsty].getWaterLevel() < 5) {
-          this.trees[isThirsty].setWaterLevel(this.trees[isThirsty].getWaterAbsorb() * Math.floor((water / (this.trees.length + this.trees.length))
+          this.trees[isThirsty].setWaterLevel(this.trees[isThirsty].getWaterAbsorb() * Math.floor((water / (this.flowers.length + this.trees.length))
           ));
         }
       }
