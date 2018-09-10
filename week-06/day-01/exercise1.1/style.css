@@ -1,0 +1,22 @@
+.container {
+  display: flex;
+  max-height: 1024px;
+  max-width: 768px;
+}
+
+.item {
+  height: 100px;
+  width: 100px;
+}
+
+.green {
+  background-color: green;
+}
+
+.yellow {
+  background-color: yellow;
+}
+
+.purple {
+  background-color: purple;
+}
