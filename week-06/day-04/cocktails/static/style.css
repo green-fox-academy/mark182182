@@ -1,0 +1,27 @@
+.holdAll {
+  width: 300px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  border: 1px solid black;
+}
+
+.nameOfAlcohol {
+  flex-direction: column;
+  justify-content: center;
+  border: 1px solid black;
+}
+
+.priceOfAlcohol {
+  width: 100px;
+  margin-left: 10px;
+  flex-direction: column;
+  border: 1px solid black;
+}
+
+.alcohol {
+  padding: 0px;
+  flex-direction: column;
+  list-style-type: none;
+  justify-content: center;
+}
