@@ -12,6 +12,7 @@ app.set('view engine', 'ejs');
 
 app.get('/', (req, res) => {
   res.render('images', {
+    image: images[0].link,
   });
 });
 

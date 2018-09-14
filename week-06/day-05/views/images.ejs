@@ -6,10 +6,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Cat gallery</title>
+  <link rel="stylesheet" href="../assets/style.css">
 </head>
 
 <body>
-
+  <div class='gallery-title'>Cat gallery</div>
+  <div class='picture-with-buttons'>
+    <button class='left-button'></button>
+    <div class='picture-frame'>
+      <img class='main-picture' src="<%= image%>">
+      <div class='pic-descr'></div>
+      <div class='image-selector'>Pic1 Pic2</div>
+    </div>
+    <button class='right-button'></button>
+  </div>
 </body>
 
 </html>

@@ -1,0 +1,49 @@
+body {
+  padding-left: 50%;
+}
+
+div {
+  min-width: 100px;
+  min-height: 100px;
+  max-width: 100px;
+  max-height: 100px;
+  display: flex;
+  border: 1px solid black;
+}
+
+.gallery-title {
+  justify-content: center;
+  align-items: center;
+}
+
+.picture-with-buttons {
+  justify-content: center;
+  align-items: center;
+}
+
+.left-button {
+  width: 30px;
+  height: 200px;
+  background: transparent url('../assets/arrow.svg') no-repeat;
+}
+
+.picture-frame {
+  flex-direction: column;
+}
+
+.main-picture {
+  width: 100px;
+  height: 100px;
+}
+
+.right-button {
+  width: 30px;
+  height: 200px;
+  background: transparent url('../assets/arrow.svg') no-repeat;
+  transform: rotate(180deg);
+}
+
+.image-selector {
+  padding: 10px;
+  justify-content: center;
+}
