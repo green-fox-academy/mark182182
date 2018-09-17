@@ -47,6 +47,13 @@ app.get('/greeter', (req, res) => {
   }
 });
 
+app.get('/appenda/:appendable', (req, res) => {
+  let appendable = req.params.appendable + 'a';
+  res.json({
+    "appended": appendable,
+  });
+});
+
 app.listen(PORT, () => {
   console.log(`Lasciate ogne speranza, voi ch'intrate ${PORT}`);
 });
