@@ -3,7 +3,7 @@
 const express = require('express');
 const app = express();
 const path = require('path');
-const PORT = 3000;
+const PORT = 8080;
 
 app.use('/assets', express.static('assets'));
 
