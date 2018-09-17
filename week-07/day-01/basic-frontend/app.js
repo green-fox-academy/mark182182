@@ -54,6 +54,36 @@ app.get('/appenda/:appendable', (req, res) => {
   });
 });
 
+app.post('/dountil/:action', (req, res) => {
+  let action = req.params.action;
+  let actionNumber = req.body.until;
+  if (action === 'sum') {
+    let sumNumber = 0;
+    for (let addNumber = 0; addNumber < actionNumber; addNumber++) {
+      sumNumber += addNumber + 1;
+    }
+    res.json({
+      "result": sumNumber,
+    });
+  }
+
+  else if (action === 'factor') {
+    let factorNumber = 1;
+    for (let currentFactor = 0; currentFactor < actionNumber; currentFactor++) {
+      factorNumber *= currentFactor + 1;
+    }
+    res.json({
+      "result": factorNumber,
+    });
+  }
+
+  else {
+    res.json({
+      "error": "Please provide a number!",
+    });
+  }
+});
+
 app.listen(PORT, () => {
   console.log(`Lasciate ogne speranza, voi ch'intrate ${PORT}`);
 });
