@@ -5,7 +5,9 @@
   "main": "app.js",
   "dependencies": {
     "body-parser": "^1.18.3",
-    "express": "^4.16.3"
+    "express": "^4.16.3",
+    "hyphenation.en-us": "^0.2.1",
+    "hypher": "^0.2.5"
   },
   "devDependencies": {},
   "scripts": {
