@@ -17,18 +17,14 @@ window.onload = () => {
           newElement.style.margin = '5px';
           const getBody = document.querySelector('.img-container');
           const newDiv = getBody.appendChild(newElement);
-          let isClicked = false;
           const moveIt = () => {
-            if (isClicked === false) {
-              document.images[index].setAttribute('src', readAPI.data[index].images.downsized.url);
-              isClicked = true;
-            }
-            else {
-              document.images[index].setAttribute('src', readAPI.data[index].images.downsized_still.url);
-              isClicked = false;
-            }
+            document.images[index].setAttribute('src', readAPI.data[index].images.downsized.url);
           };
-          document.images[index].addEventListener('click', moveIt, false);
+          const stillPic = () => {
+            document.images[index].setAttribute('src', readAPI.data[index].images.downsized_still.url);
+          }
+          document.images[index].addEventListener('mouseover', moveIt, false);
+          document.images[index].addEventListener('mouseleave', stillPic, false);
         }
       }
       http.send();
