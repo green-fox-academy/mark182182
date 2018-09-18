@@ -1,8 +1,10 @@
 const express = require('express');
+const cors = require('cors');
 const path = require('path');
 const app = express();
 const PORT = 3000;
 
+app.use(cors());
 app.use('/assets', express.static('assets'));
 
 app.get('/', (req, res) => {
