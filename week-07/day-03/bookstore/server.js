@@ -39,6 +39,7 @@ app.get('/books', function (req, res) {
 		res.json(rows);
 	});
 });
+
 app.listen(PORT, () => {
 	console.log(`App is up and running on port ${PORT}`);
 });
