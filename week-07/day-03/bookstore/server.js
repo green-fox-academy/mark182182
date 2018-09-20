@@ -26,18 +26,34 @@ conn.connect((err) => {
 });
 
 app.get('/', function (req, res) {
-  res.sendFile(path.join(__dirname, 'index.html'));
+	res.sendFile(path.join(__dirname, 'index.html'));
 });
 
 app.get('/books', function (req, res) {
-	conn.query('SELECT book_name, aut_name, cate_descrip, pub_name, book_price FROM book_mast JOIN author ON book_mast.aut_id = author.aut_id JOIN category ON book_mast.cate_id = category.cate_id JOIN publisher ON book_mast.pub_id = publisher.pub_id;', function (err, rows) {
-		if (err) {
-			console.log(err.toString());
-			res.status(500).send('Database error');
-			return;
-		}
-		res.json(rows);
-	});
+	const filterCategory = `WHERE cate_descrip LIKE '${req.query.category}'`;
+	const filterPublisher = `WHERE pub_name LIKE '${req.query.publisher}'`;
+	const filterPrice = `WHERE book_price LIKE '${req.query.price}'`;
+
+	if (req.query.category !== undefined || req.query.publisher !== undefined && req.query.price !== undefined) {
+		conn.query(`SELECT book_name, aut_name, cate_descrip, pub_name, book_price FROM book_mast JOIN author ON book_mast.aut_id = author.aut_id JOIN category ON book_mast.cate_id = category.cate_id JOIN publisher ON book_mast.pub_id = publisher.pub_id ${filterCategory};`, function (err, rows) {
+			if (err) {
+				console.log(err.toString());
+				res.status(500).send('Database error');
+				return;
+			}
+			res.json(rows);
+		});
+	}
+	else {
+		conn.query(`SELECT book_name, aut_name, cate_descrip, pub_name, book_price FROM book_mast JOIN author ON book_mast.aut_id = author.aut_id JOIN category ON book_mast.cate_id = category.cate_id JOIN publisher ON book_mast.pub_id = publisher.pub_id;`, function (err, rows) {
+			if (err) {
+				console.log(err.toString());
+				res.status(500).send('Database error');
+				return;
+			}
+			res.json(rows);
+		});
+	}
 });
 
 app.listen(PORT, () => {

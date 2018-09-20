@@ -1,0 +1,5 @@
+SELECT book_name FROM book_mast;
+SELECT aut_name FROM author;
+SELECT cate_descript FROM category;
+SELECT pub_name FROM publisher;
+SELECT purch_price FROM purchase;
