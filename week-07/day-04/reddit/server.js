@@ -23,10 +23,21 @@ conn.connect((err) => {
   console.log(`Connection to Db established`);
 });
 
-app.get('/hello', function (req, res) {
+app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'index.html'));
 });
 
+app.get('/posts', function (req, res) {
+  conn.query(`SELECT * from posts WHERE id BETWEEN 25 AND 74`, function (err, rows) {
+    if (err) {
+      console.log(err.toString());
+      res.status(500).send('Database error');
+      return;
+    }
+    res.json(rows);
+  });
+});
+
 app.listen(PORT, () => {
-console.log(`Server is up on ${PORT}`);
+  console.log(`Server is up on ${PORT}`);
 });
