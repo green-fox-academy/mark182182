@@ -29,22 +29,15 @@ app.get('/', function (req, res) {
 
 app.get('/posts', function (req, res) {
   req.headers.accept = 'application/json';
-  conn.query(`SELECT * from posts`, function (err, rows) {
-    if (err) {
-      console.log(err.toString());
-      res.status(500).send('Database error');
-      return;
-    }
-    res.status(200).json(rows);
-  });
+  getRows(req, res);
 });
 
 app.post('/posts', function (req, res) {
   req.headers.accept = 'application/json';
   const title = req.body.title;
   const url = req.body.url;
-  const username = req.body.username;
-  conn.query(`INSERT INTO posts (title, url, owner) VALUES('${title}','${url}', '${username}')`, function (err) {
+
+  conn.query(`INSERT INTO posts (title, url) VALUES('${title}','${url}')`, function (err) {
     if (err) {
       console.log(err.toString());
       res.status(500).send('Database error');
@@ -52,34 +45,74 @@ app.post('/posts', function (req, res) {
     }
     else {
       console.log(`Inserted ${req.body.title}`);
-      conn.query(`SELECT * from posts WHERE title = '${title}' ORDER BY id DESC LIMIT 1`, function (err, rows) {
-        if (err) {
-          console.log(err.toString());
-          res.status(500).send('Database error');
-          return;
-        }
-        res.status(200).json(rows);
-      });
+      getRows(req, res, `WHERE title = '${title}' ORDER BY id DESC LIMIT 1`);
     }
   });
 });
 
-/* app.put('/posts/:id/upvote', function (req, res) {
-  const postId = req.param.id;
-  const vote = req.body.vote;
+app.put('/posts/:id/upvote', function (req, res) {
   req.headers.accept = 'application/json';
-  conn.query(`UPDATE posts SET vote = ${vote + 1} WHERE id = ${postId}`, function (err) {
+  voteChange(req, res, '+');
+});
+
+app.put('/posts/:id/downvote', function (req, res) {
+  req.headers.accept = 'application/json';
+  voteChange(req, res, '-');
+});
+
+app.delete('/posts/:id', function (req, res) {
+  const postId = req.params.id;
+  
+  conn.query(`DELETE FROM posts WHERE id = ${postId}`, function (err) {
     if (err) {
       console.log(err.toString());
       res.status(500).send('Database error');
       return;
     }
     else {
-      console.log(`Upvote on id ${postId}`);
+      res.send(`Post with ${postId} deleted.`);
     }
-    res.json({ rows });
   });
-}); */
+});
+
+app.put('/posts/:id', function (req, res) {
+  const postId = req.params.id;
+  const title = req.body.title;
+  const url = req.body.url;
+
+  conn.query(`UPDATE posts SET title = '${title}', url = '${url}' WHERE id = ${postId}`, function (err) {
+    if (err) {
+      console.log(err.toString());
+      res.status(500).send('Database error');
+      return;
+    }
+  });
+  getRows(req, res, `WHERE id = ${postId}`);
+});
+
+function voteChange(req, res, operation) {
+  const postId = req.params.id;
+
+  conn.query(`UPDATE posts SET score = score ${operation}1 WHERE id = ${postId}`, function (err) {
+    if (err) {
+      console.log(err.toString());
+      res.status(500).send('Database error');
+      return;
+    }
+  });
+  getRows(req, res, `WHERE id = ${postId}`);
+}
+
+function getRows(req, res, queryParameter) {
+  conn.query(`SELECT * from posts ${queryParameter}`, function (err, rows) {
+    if (err) {
+      console.log(err.toString());
+      res.status(500).send('Database error');
+      return;
+    }
+    res.status(200).json(rows);
+  });
+}
 
 app.listen(PORT, () => {
   console.log(`Server is up on ${PORT}`);
