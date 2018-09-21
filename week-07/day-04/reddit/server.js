@@ -13,6 +13,7 @@ const conn = mySQL.createConnection({
   host: 'localhost',
   password: 'hello',
   database: 'reddit',
+  multipleStatements: true,
 });
 
 conn.connect((err) => {
@@ -62,16 +63,15 @@ app.put('/posts/:id/downvote', function (req, res) {
 
 app.delete('/posts/:id', function (req, res) {
   const postId = req.params.id;
-  
+
   conn.query(`DELETE FROM posts WHERE id = ${postId}`, function (err) {
     if (err) {
       console.log(err.toString());
       res.status(500).send('Database error');
       return;
     }
-    else {
-      res.send(`Post with ${postId} deleted.`);
-    }
+    reCreateids(req, res);
+    console.log(`Post with id ${postId} deleted.`);
   });
 });
 
@@ -114,6 +114,18 @@ function getRows(req, res, queryParameter) {
   });
 }
 
+function reCreateids(req, res) {
+  conn.query(`SET @num := 0;
+  UPDATE posts SET id = @num := (@num+1);
+  ALTER TABLE posts AUTO_INCREMENT =1;`, function (err) {
+      if (err) {
+        console.log(err.toString());
+        res.status(500).send('Database error');
+        return;
+      }
+    });
+}
+
 app.listen(PORT, () => {
-  console.log(`Server is up on ${PORT}`);
+  console.log(`Server is up on port ${PORT}`);
 });
