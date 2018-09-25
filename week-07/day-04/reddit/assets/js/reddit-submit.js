@@ -12,12 +12,12 @@ window.onload = () => {
   http.send();
   function sendPost(host) {
     const http = new XMLHttpRequest();
+    let index = localStorage.getItem("currentElement");
     http.open('POST', `${host}/posts`, true);
     http.setRequestHeader("Content-Type", "application/json");
     const getTitle = document.querySelector('#post-title')['value'];
     const getUrl = document.querySelector('#post-url')['value'];
-    console.log(JSON.stringify({ title: getTitle, url: getUrl }));
     http.send(JSON.stringify({ title: getTitle, url: getUrl }));
-    window.location = `http://localhost:3000`;
+    window.location = `${host}`;
   };
 }

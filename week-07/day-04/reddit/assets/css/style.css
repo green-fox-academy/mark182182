@@ -19,3 +19,8 @@
   transition: opacity 0.2s 0.5s ease;
   /* Mouse enter: delay */
 }
+
+#footer-text {
+  text-align: center;
+  font-size: xx-small;
+}
