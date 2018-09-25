@@ -31,13 +31,13 @@ window.onload = () => {
       downVoteButton.innerHTML = 'Downvote';
       downVoteButton.addEventListener('click', downVote.bind(null, index, host), false);
 
-      let newElement = document.createElement('a');
-      newElement.classList.add(`post${index}`);
+      let newPost = document.createElement('a');
+      newPost.classList.add(`post${index}`);
       newDivElement.classList.add('bg-white', 'text-dark', 'shadow', 'd-block', 'border');
-      newDivElement.appendChild(newElement);
-      newElement.innerHTML = context[index].title;
-      newElement.classList.add('d-inline');
-      newElement.setAttribute('href', context[index].url);
+      newDivElement.appendChild(newPost);
+      newPost.innerHTML = context[index].title;
+      newPost.classList.add('d-inline');
+      newPost.setAttribute('href', context[index].url);
 
       let newInfo = document.createElement('div');
       newInfo.classList.add(`info`);
@@ -62,8 +62,24 @@ window.onload = () => {
       deleteElement.classList.add('d-inline');
       deleteElement.addEventListener('click', deletePost.bind(null, index, host), false);
     }
-    const submitButton = document.querySelector('.submit-button');
+    const submitButton = document.querySelector('#submit-button');
     submitButton.addEventListener('click', () => { window.location = `${host}/submit` }, false);
+
+    let getLoginContainer = document.querySelector("#login-container");
+
+    if (localStorage.getItem('username') === null) {
+      loginText = document.createElement('p');
+      loginText.textContent = 'Please log in!';
+      getLoginContainer.appendChild(loginText);
+    }
+    else {
+      loginText = document.createElement('p');
+      loginText.textContent = `Logged in as ${localStorage.getItem('username')}`;
+      getLoginContainer.appendChild(loginText);
+    }
+
+    const loginButton = document.querySelector('#login-button');
+    loginButton.addEventListener('click', () => { window.location = `${host}/login` }, false);
   }
 
   function deletePost(index, host) {

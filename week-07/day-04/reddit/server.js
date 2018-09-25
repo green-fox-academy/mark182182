@@ -36,9 +36,17 @@ app.get('/modify', function (req, res) {
   res.status(200).sendFile(path.join(__dirname, 'modify.html'));
 });
 
+app.get('/login', function (req, res) {
+  res.status(200).sendFile(path.join(__dirname, 'login.html'));
+});
+
 app.get('/posts', function (req, res) {
-  req.headers.accept = 'application/json';
+  req.headers["content-type"] = "application/json";
   getRows(req, res);
+});
+
+app.post('/login', function (req, res) {
+  getUsername(req, res);
 });
 
 app.post('/posts', function (req, res) {
@@ -47,7 +55,7 @@ app.post('/posts', function (req, res) {
   const url = req.body.url;
   const username = req.body.username;
 
-  conn.query(`INSERT INTO posts (title, url, owner_id) VALUES('${title}','${url}', '${username}')`, function (err) {
+  conn.query(`INSERT INTO posts (title, url) VALUES('${title}','${url}')`, function (err) {
     if (err) {
       console.log(err.toString());
       res.status(500).send('Database error');
@@ -138,3 +146,15 @@ function reCreateids(req, res) {
 app.listen(PORT, () => {
   console.log(`Server is up on port ${PORT}`);
 });
+
+function getUsername(req, res) {
+  const username = req.body.username;
+  conn.query(`SELECT owner FROM owners WHERE owner = ${username}`, function (err, username) {
+    if (err) {
+      console.log(err.toString());
+      res.status(500).send('Database error');
+      return;
+    }
+    res.json(username);
+  });
+}

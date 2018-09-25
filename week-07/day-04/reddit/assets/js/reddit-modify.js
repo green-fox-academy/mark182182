@@ -5,7 +5,7 @@ window.onload = () => {
 
   http.onload = () => {
     if (http.status === 200) {
-      const getSubmitButton = document.querySelector('.submit-button');
+      const getSubmitButton = document.querySelector('#submit-button');
       let getTitle = document.querySelector('#post-title');
       let getUrl = document.querySelector('#post-url');
       getTitle.setAttribute("value", localStorage.getItem("currentTitle"));
@@ -19,7 +19,12 @@ window.onload = () => {
     const index = localStorage.getItem("currentElement");
     http.open('PUT', `${host}/posts/${index}`, true);
     http.setRequestHeader("Content-Type", "application/json");
-    http.send(JSON.stringify({ title: getTitle['value'], url: getUrl['value'] }));
-    window.location = `${host}`;
+    if (getTitle['value'] === "") {
+      alert('Please provide a title!');
+    }
+    else {
+      http.send(JSON.stringify({ title: getTitle['value'], url: getUrl['value'] }));
+      window.location = `${host}`;
+    }
   };
 }

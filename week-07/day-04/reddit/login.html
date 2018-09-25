@@ -11,26 +11,21 @@
     crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Oxygen" rel="stylesheet">
-  <script type="text/javascript" src="assets/js/reddit.js"></script>
+  <script type="text/javascript" src="assets/js/reddit-login.js"></script>
 </head>
 
 <body>
   <div class="content-holder">
     <img class="bg-image img-fluid w-100" src="./assets/css/background.png">
-    <p id="head-title"> All Our Gods Have Abandoned Us</p>
-    <button id="submit-button"> SUBMIT A NEW POST</button>
-    <div id="login-container"><button id="login-button"> Login </button></div>
+        <p id="head-title"> All Our Gods Have Abandoned Us</p>
     <div class="m-2 p-2 d-block w-50">
-       <div class="posts-container">
-        Posts should be here.
-      </div>
+    <div><font color="red">*</font>Username<input type="text" id="username" name="ip-display"
+                     pattern="[A-Za-z\s]+"
+                     maxlength="30" minlength="2" required /></div>
+    <div><font color="red">*</font>Password<input id="password" name="url" required /></div>
+    <button id="login-button"> LOGIN </button>
     </div>
-<footer>
-<p id="footer-text">
-"Change, and everything is change Nothing can be held onto To the degree that you go with a stream You see, you are still, you're flowing with it
-
-But to the degree you resist the stream Then you notice that the current Is rushing past you and fighting you So swim with it, go with it And you're there. You're at rest"</p>
-</footer>
   </div>
 </body>
+
 </html>
