@@ -28,17 +28,22 @@ app.get('/', function (req, res) {
   res.status(200).sendFile(path.join(__dirname, 'index.html'));
 });
 
+app.get('/submit', function (req, res) {
+  res.status(200).sendFile(path.join(__dirname, 'submit.html'));
+});
+
 app.get('/posts', function (req, res) {
   req.headers.accept = 'application/json';
-  getRows(req, res);
+  getRows(req, res, 'ORDER BY score DESC');
 });
 
 app.post('/posts', function (req, res) {
   req.headers.accept = 'application/json';
   const title = req.body.title;
   const url = req.body.url;
+  const username = req.body.username;
 
-  conn.query(`INSERT INTO posts (title, url) VALUES('${title}','${url}')`, function (err) {
+  conn.query(`INSERT INTO posts (title, url, owner) VALUES('${title}','${url}', '${username}')`, function (err) {
     if (err) {
       console.log(err.toString());
       res.status(500).send('Database error');
@@ -70,8 +75,8 @@ app.delete('/posts/:id', function (req, res) {
       res.status(500).send('Database error');
       return;
     }
-    reCreateids(req, res);
     console.log(`Post with id ${postId} deleted.`);
+    reCreateids(req, res);
   });
 });
 
