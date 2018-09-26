@@ -109,7 +109,7 @@ window.onload = () => {
   }
 
   function upVote(index, host) {
-    fetch(`${host} / posts / ${index + 1} / upvote`, {
+    fetch(`${host}/posts/${index + 1}/upvote`, {
       method: 'put',
     }).then((resp) => (resp.body))
       .then(response => {
@@ -118,7 +118,7 @@ window.onload = () => {
   }
 
   function downVote(index, host) {
-    fetch(`${host} / posts / ${index + 1} / downvote`, {
+    fetch(`${host}/posts/${index + 1}/downvote`, {
       method: 'put',
     }).then((resp) => (resp.body))
       .then(response => {
