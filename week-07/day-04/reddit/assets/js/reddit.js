@@ -16,6 +16,7 @@ window.onload = () => {
     for (let index = 0; index < context.length; index++) {
       let newDivElement = document.createElement('div');
       getPostsContainer.appendChild(newDivElement);
+      newDivElement.classList.add(`post${index}`, 'post');
 
       let newButtonHolder = document.createElement('div');
       newButtonHolder.classList.add('button-holder');
@@ -41,17 +42,14 @@ window.onload = () => {
 
       let newPost = document.createElement('a');
       newPost.classList.add(`post${index}`);
-      newDivElement.classList.add('post');
       newPostsHolder.appendChild(newPost);
       newPost.innerHTML = context[index].title;
-      newPost.classList.add('d-inline');
       newPost.setAttribute('href', context[index].url);
 
       let newInfo = document.createElement('div');
       newInfo.classList.add(`info`);
       newPostsHolder.appendChild(newInfo);
       newInfo.innerHTML = 'Post created by ' + context[index].owner + ' at ' + context[index].timestamp;
-      newInfo.classList.add('d-inline');
 
       let postActionHolder = document.createElement('div');
       postActionHolder.classList.add('post-action-holder');
@@ -72,7 +70,7 @@ window.onload = () => {
       postActionHolder.appendChild(deleteElement);
       deleteElement.innerHTML = 'Remove';
       deleteElement.classList.add('delete-post');
-      deleteElement.addEventListener('click', deletePost.bind(null, index, host), false);
+      deleteElement.addEventListener('click', deletePost.bind(null, index, host, getPostsContainer), false);
     }
     const submitButton = document.querySelector('#submit-button');
     submitButton.addEventListener('click', () => { window.location = `${host}/submit` }, false);
@@ -97,17 +95,21 @@ window.onload = () => {
     createButton.addEventListener('click', () => { window.location = `${host}/login` }, false);
   }
 
-  function deletePost(index, host) {
+  function deletePost(index, host, getPostsContainer) {
     fetch(`${host}/posts/${index + 1}`, {
       method: 'delete',
     }).then((resp) => (resp.body))
       .then(response => {
       });
-    location.reload();
+    const deleteThisPost = document.querySelector(`.post${index}`);
+    deleteThisPost.classList.add('animated', 'fadeOutLeft');
+    setTimeout(() => {
+      getPostsContainer.removeChild(deleteThisPost);
+    }, 1000);
   }
 
   function upVote(index, host) {
-    fetch(`${host}/posts/${index + 1}/upvote`, {
+    fetch(`${host} / posts / ${index + 1} / upvote`, {
       method: 'put',
     }).then((resp) => (resp.body))
       .then(response => {
@@ -116,7 +118,7 @@ window.onload = () => {
   }
 
   function downVote(index, host) {
-    fetch(`${host}/posts/${index + 1}/downvote`, {
+    fetch(`${host} / posts / ${index + 1} / downvote`, {
       method: 'put',
     }).then((resp) => (resp.body))
       .then(response => {

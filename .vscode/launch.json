@@ -7,6 +7,18 @@
         {
             "type": "node",
             "request": "launch",
+            "name": "Launch Program",
+            "program": "${workspaceFolder}/app.js"
+        },
+        {
+            "type": "node",
+            "request": "attach",
+            "name": "Attach",
+            "port": 9229
+        },
+        {
+            "type": "node",
+            "request": "launch",
             "name": "Program indítása",
             "program": "${workspaceFolder}/week-04\\day-04\\anagram\\anagram.ts",
             "outFiles": [
