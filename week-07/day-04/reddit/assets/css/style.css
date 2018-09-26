@@ -27,7 +27,6 @@ body {
   background-repeat: no-repeat;
   background-position: 50% 50%;
   background-color: transparent;
-  /* put the height and width of your image here */
   height: 15px;
   width: 14px;
   border: none;
@@ -38,7 +37,6 @@ body {
   background-repeat: no-repeat;
   background-position: 50% 50%;
   background-color: transparent;
-  /* put the height and width of your image here */
   height: 15px;
   width: 14px;
   border: none;
@@ -52,13 +50,11 @@ body {
   font-family: 'Quicksand', sans-serif;
   opacity: 1;
   transition: opacity 0.2s 0 ease;
-  /* Mouse leave: immediate */
 }
 
 #head-title:hover {
   opacity: 0;
   transition: opacity 0.2s 0.5s ease;
-  /* Mouse enter: delay */
 }
 
 .posts-container {
