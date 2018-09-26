@@ -1,14 +1,65 @@
 body {
   display: flex;
   justify-content: center;
-  padding-top: 25%;
+  padding-top: 10%;
   background-color: #3E94EC;
 }
 
 table {
   font-family: 'Source Sans Pro', sans-serif;
+  font-size: 32px;
+  border-collapse: collapse;
+  border-radius: 8px;
+  overflow: hidden;
+  width: 600px;
+  height: 600px;
+  box-shadow: 5px 5px 50px 5px #000000;
+}
+
+table td {
+  border-bottom: 2px solid #C1C3D0;
+  border-left: 2px solid #C1C3D0;
+}
+
+table thead {
+  border-bottom: 4px solid #C1C3D0;
+}
+
+thead tr {
+  background-color: #1B1E24;
+  color: #FFFFFF;
+}
+
+thead tr th:first-child {
+  border-right: 2px solid #C1C3D0;
+}
+
+thead tr th {
+  padding: 12px;
+  text-align: left;
+  color: #CCD3DB;
+  font-weight: 400;
+  font-size: larger;
 }
 
 tbody tr {
-  color: TOMATO;
+  margin: 10px;
+  color: #666A85;
+  text-shadow: 1px 1px 1px #666A85;
+}
+
+tbody tr td {
+  padding-left: 12px;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #FFFFFF;
+}
+
+tbody tr:nth-child(odd) {
+  background-color: #EBEBEB;
+}
+
+table tbody td[data-currency="$"]::before {
+  content: "$ ";
 }
