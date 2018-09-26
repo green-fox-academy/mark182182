@@ -17,38 +17,50 @@ window.onload = () => {
       let newDivElement = document.createElement('div');
       getPostsContainer.appendChild(newDivElement);
 
+      let newButtonHolder = document.createElement('div');
+      newButtonHolder.classList.add('button-holder');
+      newDivElement.appendChild(newButtonHolder);
+
       let upVoteButton = document.createElement('button');
-      newDivElement.appendChild(upVoteButton);
-      upVoteButton.innerHTML = 'Upvote';
+      newButtonHolder.appendChild(upVoteButton);
+      upVoteButton.classList.add('upvote-button');
       upVoteButton.addEventListener('click', upVote.bind(null, index, host), false);
 
       let scoreInfo = document.createElement('div');
-      newDivElement.appendChild(scoreInfo);
+      newButtonHolder.appendChild(scoreInfo);
       scoreInfo.innerHTML = context[index].score;
 
       let downVoteButton = document.createElement('button');
-      newDivElement.appendChild(downVoteButton);
-      downVoteButton.innerHTML = 'Downvote';
+      newButtonHolder.appendChild(downVoteButton);
+      downVoteButton.classList.add('downvote-button');
       downVoteButton.addEventListener('click', downVote.bind(null, index, host), false);
+
+      let newPostsHolder = document.createElement('div');
+      newPostsHolder.classList.add('posts-holder');
+      newDivElement.appendChild(newPostsHolder);
 
       let newPost = document.createElement('a');
       newPost.classList.add(`post${index}`);
-      newDivElement.classList.add('bg-white', 'text-dark', 'shadow', 'd-block', 'border');
-      newDivElement.appendChild(newPost);
+      newDivElement.classList.add('post');
+      newPostsHolder.appendChild(newPost);
       newPost.innerHTML = context[index].title;
       newPost.classList.add('d-inline');
       newPost.setAttribute('href', context[index].url);
 
       let newInfo = document.createElement('div');
       newInfo.classList.add(`info`);
-      newDivElement.appendChild(newInfo);
+      newPostsHolder.appendChild(newInfo);
       newInfo.innerHTML = 'Post created by ' + context[index].owner + ' at ' + context[index].timestamp;
       newInfo.classList.add('d-inline');
 
+      let postActionHolder = document.createElement('div');
+      postActionHolder.classList.add('post-action-holder');
+      newPostsHolder.appendChild(postActionHolder);
+
       let modifyElement = document.createElement('a');
-      newDivElement.appendChild(modifyElement);
+      postActionHolder.appendChild(modifyElement);
       modifyElement.innerHTML = 'Modify';
-      modifyElement.classList.add('d-block');
+      modifyElement.classList.add('modify-post');
       modifyElement.addEventListener('click', () => {
         localStorage.setItem("currentElement", index + 1);
         localStorage.setItem("currentTitle", context[index].title);
@@ -57,9 +69,9 @@ window.onload = () => {
       }, false);
 
       let deleteElement = document.createElement('a');
-      newDivElement.appendChild(deleteElement);
+      postActionHolder.appendChild(deleteElement);
       deleteElement.innerHTML = 'Remove';
-      deleteElement.classList.add('d-inline');
+      deleteElement.classList.add('delete-post');
       deleteElement.addEventListener('click', deletePost.bind(null, index, host), false);
     }
     const submitButton = document.querySelector('#submit-button');
@@ -80,6 +92,9 @@ window.onload = () => {
 
     const loginButton = document.querySelector('#login-button');
     loginButton.addEventListener('click', () => { window.location = `${host}/login` }, false);
+
+    const createButton = document.querySelector('#create-button');
+    createButton.addEventListener('click', () => { window.location = `${host}/login` }, false);
   }
 
   function deletePost(index, host) {

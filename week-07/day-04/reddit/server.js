@@ -155,6 +155,6 @@ function getUsername(req, res) {
       res.status(500).send('Database error');
       return;
     }
-    res.json(username);
+    res.json({ asd: "asd" });
   });
 }
