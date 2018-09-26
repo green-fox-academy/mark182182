@@ -1,0 +1,14 @@
+body {
+  display: flex;
+  justify-content: center;
+  padding-top: 25%;
+  background-color: #3E94EC;
+}
+
+table {
+  font-family: 'Source Sans Pro', sans-serif;
+}
+
+tbody tr {
+  color: TOMATO;
+}
