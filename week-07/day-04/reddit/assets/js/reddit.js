@@ -80,7 +80,7 @@ window.onload = () => {
     if (localStorage.getItem('username') === null) {
       loginText = document.createElement('p');
       loginText.textContent = 'Please log in!';
-      getLoginContainer.appendChild(loginText);
+      document.querySelector('#navbar').appendChild(loginText);
     }
     else {
       loginText = document.createElement('p');
@@ -114,7 +114,8 @@ window.onload = () => {
     }).then((resp) => (resp.body))
       .then(response => {
       });
-    location.reload();
+    const getCurrentScore = document.querySelectorAll(`.button-holder div`);
+    getCurrentScore[index].textContent++;
   }
 
   function downVote(index, host) {
@@ -123,6 +124,7 @@ window.onload = () => {
     }).then((resp) => (resp.body))
       .then(response => {
       });
-    location.reload();
+    const getCurrentScore = document.querySelectorAll(`.button-holder div`);
+    getCurrentScore[index].textContent--;
   }
 }
