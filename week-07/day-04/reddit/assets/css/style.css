@@ -40,7 +40,10 @@ body {
 
 #submit-container {
   display: flex;
-  justify-content: center;
+  align-items: center;
+  padding-top: 12px;
+  width: 120px;
+  height: 40px;
 }
 
 .upvote-button {
@@ -70,7 +73,6 @@ body {
   margin-bottom: 10%;
   font-family: 'Quicksand', sans-serif;
   opacity: 1;
-  transition: opacity 0.2s 0 ease;
 }
 
 #head-title:hover {
@@ -109,7 +111,9 @@ body {
   background-color: rgb(124, 124, 124);
 }
 
-.button-holder div {
+.button-holder p {
+  font-size: larger;
+  text-shadow: rgba(0, 0, 0, 0.4) 2px 0px;
   color: #B6B6B6;
 }
 
@@ -117,6 +121,15 @@ body {
   display: inline-flex;
   flex-direction: column;
   margin-left: 10px;
+}
+
+.posts-holder a {
+  font-family: 'Quicksand', sans-serif;
+  text-decoration: none;
+}
+
+.posts-holder a:hover {
+  opacity: 0.5;
 }
 
 .posts-holder * {
@@ -127,19 +140,71 @@ body {
   display: flex;
 }
 
+.button {
+  padding: 8px;
+  font-weight: 300;
+  color: #FFFFFF;
+  border: none;
+  background-color: rgba(25, 25, 112, 0.904);
+  border-collapse: collapse;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: inset rgba(0, 0, 0, 0.5) 0 -1px 0 0, inset rgba(255, 255, 255, 0.5) 0 1px 0;
+}
+
+.button:hover {
+  background-color: rgb(30, 30, 131);
+}
+
+.button:active {
+  background-color: rgb(17, 17, 80);
+}
+
+.modify-post {
+  padding: 8px;
+}
+
 .delete-post {
-  padding-left: 10px;
+  margin-left: 10px;
 }
 
 #subreddit-information {
   display: flex;
-  background-color: purple;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #FEFEFE;
   width: 300px;
-  height: 100px;
+  height: 340px;
+  border: 1px solid #CCCCCC;
+  background-color: #FFFFFF;
+  border-collapse: collapse;
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+#information-text {
+  text-align: center;
+  margin: 0 6px;
 }
 
 #footer-text {
   text-align: center;
   font-size: xx-small;
   color: #FFFFFF;
+}
+
+#new-post-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#title-holder {
+  padding-bottom: 12px;
+}
+
+#url-holder {
+  padding-bottom: 12px;
 }

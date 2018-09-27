@@ -9,23 +9,29 @@
     <title>reddit: the front page of the internet</title>
     <link href="https://fonts.googleapis.com/css?family=Quicksand"
       rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Oxygen"
+    <link href="https://fonts.googleapis.com/css?family=Oxygen:300"
       rel="stylesheet">
     <script type="text/javascript" src="assets/js/reddit-submit.js"></script>
   </head>
 
   <body>
-    <img class="bg-image img-fluid w-100" src="./assets/css/background.png">
+    <img class="bg-image" src="./assets/css/background.png">
     <p id="head-title"> All Our Gods Have Abandoned Us</p>
-    <div class="content-holder">
-      <div class="m-2 p-2 d-block w-50">
+    <div id="new-post-container">
+      <div id="title-holder">
         <div><font color="red">*</font><font color="white">Title</font><input
             type="text" id="post-title"
             name="ip-display"
             pattern="[A-Za-z\s]+"
             maxlength="30" minlength="2" required /></div>
-        <div><font color="white">URL</font><input id="post-url" name="url" /></div>
-        <button id="submit-button"> SUBMIT NEW POST</button>
+      </div>
+      <div id="url-holder">
+        <div>
+          <font color="white">URL</font><input id="post-url"
+            name="url" /></div>
+      </div>
+      <div>
+        <button id="submit-button" class="button"> SUBMIT NEW POST</button>
       </div>
     </div>
   </body>

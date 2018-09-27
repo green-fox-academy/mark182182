@@ -27,7 +27,7 @@ window.onload = () => {
       upVoteButton.classList.add('upvote-button');
       upVoteButton.addEventListener('click', upVote.bind(null, index, host), false);
 
-      let scoreInfo = document.createElement('div');
+      let scoreInfo = document.createElement('p');
       newButtonHolder.appendChild(scoreInfo);
       scoreInfo.innerHTML = context[index].score;
 
@@ -49,16 +49,30 @@ window.onload = () => {
       let newInfo = document.createElement('div');
       newInfo.classList.add(`info`);
       newPostsHolder.appendChild(newInfo);
-      newInfo.innerHTML = 'Post created by ' + context[index].owner + ' at ' + context[index].timestamp;
 
+      if (((Date.now() - Date.parse(context[index].timestamp)) / 1000) >= 1 && ((Date.now() - Date.parse(context[index].timestamp)) / 1000) < 60) {
+        newInfo.innerHTML = 'Post created by ' + context[index].owner + parseInt((Date.now() - Date.parse(context[index].timestamp)) / 1000) + ' seconds ago.';
+      }
+
+      else if (((Date.now() - Date.parse(context[index].timestamp)) / 60000) >= 1 && ((Date.now() - Date.parse(context[index].timestamp)) / 60000) < 60) {
+        newInfo.innerHTML = 'Post created by ' + context[index].owner + parseInt((Date.now() - Date.parse(context[index].timestamp)) / 60000) + ' minutes ago.';
+      }
+
+      else if (((Date.now() - Date.parse(context[index].timestamp)) / 3600000) >= 1 && ((Date.now() - Date.parse(context[index].timestamp)) / 3600000) < 24) {
+        newInfo.innerHTML = 'Post created by ' + context[index].owner + parseInt((Date.now() - Date.parse(context[index].timestamp)) / 3600000) + ' hours ago.';
+      }
+
+      else if (((Date.now() - Date.parse(context[index].timestamp)) / 86400000) >= 1 && ((Date.now() - Date.parse(context[index].timestamp)) / 86400000) < 24) {
+        newInfo.innerHTML = 'Post created by ' + context[index].owner + parseInt((Date.now() - Date.parse(context[index].timestamp)) / 86400000) + ' days ago.';
+      }
       let postActionHolder = document.createElement('div');
       postActionHolder.classList.add('post-action-holder');
       newPostsHolder.appendChild(postActionHolder);
 
-      let modifyElement = document.createElement('a');
+      let modifyElement = document.createElement('button');
       postActionHolder.appendChild(modifyElement);
       modifyElement.innerHTML = 'Modify';
-      modifyElement.classList.add('modify-post');
+      modifyElement.classList.add('modify-post', 'button');
       modifyElement.addEventListener('click', () => {
         localStorage.setItem("currentElement", index + 1);
         localStorage.setItem("currentTitle", context[index].title);
@@ -66,10 +80,10 @@ window.onload = () => {
         window.location = `${host}/modify`
       }, false);
 
-      let deleteElement = document.createElement('a');
+      let deleteElement = document.createElement('button');
       postActionHolder.appendChild(deleteElement);
       deleteElement.innerHTML = 'Remove';
-      deleteElement.classList.add('delete-post');
+      deleteElement.classList.add('delete-post', 'button');
       deleteElement.addEventListener('click', deletePost.bind(null, index, host, getPostsContainer), false);
     }
     const submitButton = document.querySelector('#submit-button');
@@ -114,8 +128,10 @@ window.onload = () => {
     }).then((resp) => (resp.body))
       .then(response => {
       });
-    const getCurrentScore = document.querySelectorAll(`.button-holder div`);
+    const getCurrentScore = document.querySelectorAll(`.button-holder p`);
     getCurrentScore[index].textContent++;
+    const getUpvoteButton = document.querySelector(`.post${index} .button-holder .upvote-button`);
+    getUpvoteButton.style.backgroundImage = 'url(../assets/css/upvoted.png)';
   }
 
   function downVote(index, host) {
@@ -124,7 +140,9 @@ window.onload = () => {
     }).then((resp) => (resp.body))
       .then(response => {
       });
-    const getCurrentScore = document.querySelectorAll(`.button-holder div`);
+    const getCurrentScore = document.querySelectorAll(`.button-holder p`);
     getCurrentScore[index].textContent--;
+    const getDownvoteButton = document.querySelector(`.post${index} .button-holder .downvote-button`);
+    getDownvoteButton.style.backgroundImage = 'url(../assets/css/downvoted.png)';
   }
 }
