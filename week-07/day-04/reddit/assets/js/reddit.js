@@ -50,7 +50,11 @@ window.onload = () => {
       newInfo.classList.add(`info`);
       newPostsHolder.appendChild(newInfo);
 
-      if (((Date.now() - Date.parse(context[index].timestamp)) / 1000) >= 1 && ((Date.now() - Date.parse(context[index].timestamp)) / 1000) < 60) {
+      if (((Date.now() - Date.parse(context[index].timestamp)) / 1000) < 1) {
+        newInfo.innerHTML = 'Post created by ' + context[index].owner + ' ' + ' now.';
+      }
+
+      else if (((Date.now() - Date.parse(context[index].timestamp)) / 1000) >= 1 && ((Date.now() - Date.parse(context[index].timestamp)) / 1000) < 60) {
         newInfo.innerHTML = 'Post created by ' + context[index].owner + ' ' + parseInt((Date.now() - Date.parse(context[index].timestamp)) / 1000) + ' seconds ago.';
       }
 
