@@ -36,8 +36,8 @@ app.get('/modify', function (req, res) {
   res.status(200).sendFile(path.join(__dirname, 'modify.html'));
 });
 
-app.get('/login', function (req, res) {
-  res.status(200).sendFile(path.join(__dirname, 'login.html'));
+app.get('/create', function (req, res) {
+  res.status(200).sendFile(path.join(__dirname, 'create.html'));
 });
 
 app.get('/posts', function (req, res) {
@@ -45,8 +45,21 @@ app.get('/posts', function (req, res) {
   getRows(req, res);
 });
 
-app.post('/login', function (req, res) {
-  getUsername(req, res);
+app.post('/create', function (req, res) {
+  const owner = req.body.owner;
+  const password = req.body.password;
+
+  conn.query(`INSERT INTO users (owner, password) VALUES('${owner}', SHA1('${password}'))`, function (err) {
+    if (err) {
+      console.log(err.toString());
+      res.status(500).send('Database error');
+      return;
+    }
+    else {
+      console.log(`Inserted ${owner}`);
+      getUserId(req, res);
+    }
+  });
 });
 
 app.post('/posts', function (req, res) {
@@ -147,14 +160,14 @@ app.listen(PORT, () => {
   console.log(`Server is up on port ${PORT}`);
 });
 
-function getUsername(req, res) {
-  const username = req.body.username;
-  conn.query(`SELECT owner FROM owners WHERE owner = ${username}`, function (err, username) {
+function getUserId(req, res) {
+  const username = req.body.owner;
+  conn.query(`SELECT owner_id FROM users WHERE owner = '${username}'`, function (err, username) {
     if (err) {
       console.log(err.toString());
       res.status(500).send('Database error');
       return;
     }
-    res.json({ asd: "asd" });
+    res.status(200).json({ username });
   });
 }

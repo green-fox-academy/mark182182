@@ -51,19 +51,19 @@ window.onload = () => {
       newPostsHolder.appendChild(newInfo);
 
       if (((Date.now() - Date.parse(context[index].timestamp)) / 1000) >= 1 && ((Date.now() - Date.parse(context[index].timestamp)) / 1000) < 60) {
-        newInfo.innerHTML = 'Post created by ' + context[index].owner + parseInt((Date.now() - Date.parse(context[index].timestamp)) / 1000) + ' seconds ago.';
+        newInfo.innerHTML = 'Post created by ' + context[index].owner + ' ' + parseInt((Date.now() - Date.parse(context[index].timestamp)) / 1000) + ' seconds ago.';
       }
 
       else if (((Date.now() - Date.parse(context[index].timestamp)) / 60000) >= 1 && ((Date.now() - Date.parse(context[index].timestamp)) / 60000) < 60) {
-        newInfo.innerHTML = 'Post created by ' + context[index].owner + parseInt((Date.now() - Date.parse(context[index].timestamp)) / 60000) + ' minutes ago.';
+        newInfo.innerHTML = 'Post created by ' + context[index].owner + ' ' + parseInt((Date.now() - Date.parse(context[index].timestamp)) / 60000) + ' minutes ago.';
       }
 
       else if (((Date.now() - Date.parse(context[index].timestamp)) / 3600000) >= 1 && ((Date.now() - Date.parse(context[index].timestamp)) / 3600000) < 24) {
-        newInfo.innerHTML = 'Post created by ' + context[index].owner + parseInt((Date.now() - Date.parse(context[index].timestamp)) / 3600000) + ' hours ago.';
+        newInfo.innerHTML = 'Post created by ' + context[index].owner + ' ' + parseInt((Date.now() - Date.parse(context[index].timestamp)) / 3600000) + ' hours ago.';
       }
 
       else if (((Date.now() - Date.parse(context[index].timestamp)) / 86400000) >= 1 && ((Date.now() - Date.parse(context[index].timestamp)) / 86400000) < 24) {
-        newInfo.innerHTML = 'Post created by ' + context[index].owner + parseInt((Date.now() - Date.parse(context[index].timestamp)) / 86400000) + ' days ago.';
+        newInfo.innerHTML = 'Post created by ' + context[index].owner + ' ' + parseInt((Date.now() - Date.parse(context[index].timestamp)) / 86400000) + ' days ago.';
       }
       let postActionHolder = document.createElement('div');
       postActionHolder.classList.add('post-action-holder');
@@ -106,7 +106,7 @@ window.onload = () => {
     loginButton.addEventListener('click', () => { window.location = `${host}/login` }, false);
 
     const createButton = document.querySelector('#create-button');
-    createButton.addEventListener('click', () => { window.location = `${host}/login` }, false);
+    createButton.addEventListener('click', () => { window.location = `${host}/create` }, false);
   }
 
   function deletePost(index, host, getPostsContainer) {

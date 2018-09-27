@@ -208,3 +208,8 @@ body {
 #url-holder {
   padding-bottom: 12px;
 }
+
+.creation-content-holder * {
+  margin-bottom: 12px;
+  margin-left: 12px;
+}
