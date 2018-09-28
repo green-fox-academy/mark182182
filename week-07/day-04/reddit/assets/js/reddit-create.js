@@ -1,7 +1,7 @@
 window.onload = () => {
   const host = 'http://localhost:3000';
   const http = new XMLHttpRequest();
-  http.open('GET', `${host}/login`, true);
+  http.open('GET', `${host}/create`, true);
 
   http.onload = () => {
     if (http.status === 200) {
@@ -15,7 +15,7 @@ window.onload = () => {
   http.send();
   function sendAccountDetails(host, getUsername, getPassword, getContentHolder) {
     const http = new XMLHttpRequest();
-    http.open('POST', `${host}/login`, true);
+    http.open('POST', `${host}/create`, true);
     http.setRequestHeader("Content-Type", "application/json");
     if (getUsername['value'] === "" || getPassword['value'] === "") {
       alert('Please provide information!');

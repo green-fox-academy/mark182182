@@ -61,8 +61,7 @@ app.post('/login', function (req, res) {
     }
     else {
       console.log(pass);
-
-      conn.query(`SELECT SHA1('${password}') = '${pass}'`, function (err, result) {
+      conn.query(`SELECT SHA1('${password}') = '${pass}' AS 'password found'`, function (err, result) {
         if (err) {
           console.log(err.toString());
           res.status(500).send('Database error');
@@ -86,7 +85,7 @@ app.post('/create', function (req, res) {
       return;
     }
     else {
-      console.log(`Inserted ${owner}`);
+      console.log(`User created with name: ${owner}`);
       getUserId(req, res);
     }
   });
