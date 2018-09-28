@@ -139,7 +139,6 @@ app.delete('/posts/:id', function (req, res) {
       return;
     }
     console.log(`Post with id ${postId} deleted.`);
-    reCreateids(req, res);
   });
 });
 
@@ -147,8 +146,9 @@ app.put('/posts/:id', function (req, res) {
   const postId = req.params.id;
   const title = req.body.title;
   const url = req.body.url;
+  const username = req.body.username;
 
-  conn.query(`UPDATE posts2 SET title = ?, url = ? WHERE id = ?`, [title, url, postId], function (err) {
+  conn.query(`UPDATE posts2 SET title = ?, url = ?, owner = ?  WHERE id = ?`, [title, url, username, postId], function (err) {
     if (err) {
       console.log(err.toString());
       res.status(500).send('Database error');
@@ -172,23 +172,13 @@ function voteChange(req, res, operation) {
 }
 
 function getRows(req, res, queryParameter) {
-  conn.query(`SELECT * from posts2 ${queryParameter} `, function (err, rows) {
+  conn.query(`SELECT * from posts2 ${queryParameter} ORDER BY timestamp ASC `, function (err, rows) {
     if (err) {
       console.log(err.toString());
       res.status(500).send('Database error');
       return;
     }
     res.status(200).json(rows);
-  });
-}
-
-function getPostId(req, res) {
-  conn.query(`SELECT id FROM posts2 WHERE id =  `, function (err) {
-    if (err) {
-      console.log(err.toString());
-      res.status(500).send('Database error');
-      return;
-    }
   });
 }
 

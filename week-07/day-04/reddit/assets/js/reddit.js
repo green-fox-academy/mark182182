@@ -14,9 +14,10 @@ window.onload = () => {
   function getPosts(context, host) {
     const getPostsContainer = document.querySelector('.posts-container');
     for (let index = 0; index < context.length; index++) {
+
       let newDivElement = document.createElement('div');
       getPostsContainer.appendChild(newDivElement);
-      newDivElement.classList.add(`post${index}`, 'post');
+      newDivElement.classList.add(`post${context[index].id}`, 'post');
 
       let newButtonHolder = document.createElement('div');
       newButtonHolder.classList.add('button-holder');
@@ -25,7 +26,7 @@ window.onload = () => {
       let upVoteButton = document.createElement('button');
       newButtonHolder.appendChild(upVoteButton);
       upVoteButton.classList.add('upvote-button');
-      upVoteButton.addEventListener('click', upVote.bind(null, index, host), false);
+      upVoteButton.addEventListener('click', upVote.bind(null, context, index, host), false);
 
       let scoreInfo = document.createElement('p');
       newButtonHolder.appendChild(scoreInfo);
@@ -34,14 +35,14 @@ window.onload = () => {
       let downVoteButton = document.createElement('button');
       newButtonHolder.appendChild(downVoteButton);
       downVoteButton.classList.add('downvote-button');
-      downVoteButton.addEventListener('click', downVote.bind(null, index, host), false);
+      downVoteButton.addEventListener('click', downVote.bind(null, context, index, host), false);
 
       let newPostsHolder = document.createElement('div');
       newPostsHolder.classList.add('posts-holder');
       newDivElement.appendChild(newPostsHolder);
 
       let newPost = document.createElement('a');
-      newPost.classList.add(`post${index}`);
+      newPost.classList.add(`post${context[index].id}`);
       newPostsHolder.appendChild(newPost);
       newPost.innerHTML = context[index].title;
       newPost.setAttribute('href', context[index].url);
@@ -73,13 +74,13 @@ window.onload = () => {
       postActionHolder.classList.add('post-action-holder');
       newPostsHolder.appendChild(postActionHolder);
 
-      if (localStorage.getItem('username') !== null) {
+      if (localStorage.getItem('username') !== null && localStorage.getItem('username') === context[index].owner || localStorage.getItem('username') === 'blackwizard') {
         let modifyElement = document.createElement('button');
         postActionHolder.appendChild(modifyElement);
         modifyElement.innerHTML = 'Modify';
         modifyElement.classList.add('modify-post', 'button');
         modifyElement.addEventListener('click', () => {
-          localStorage.setItem("currentElement", index + 1);
+          localStorage.setItem("currentElement", context[index].id);
           localStorage.setItem("currentTitle", context[index].title);
           localStorage.setItem("currentURL", context[index].url);
           window.location = `${host}/modify`
@@ -89,7 +90,8 @@ window.onload = () => {
         postActionHolder.appendChild(deleteElement);
         deleteElement.innerHTML = 'Remove';
         deleteElement.classList.add('delete-post', 'button');
-        deleteElement.addEventListener('click', deletePost.bind(null, index, host, getPostsContainer), false);
+        deleteElement.addEventListener('click', deletePost.bind(null, context, index, host, getPostsContainer), false);
+
       }
     }
     const submitButton = document.querySelector('#submit-button');
@@ -111,40 +113,40 @@ window.onload = () => {
     }
   }
 
-  function deletePost(index, host, getPostsContainer) {
-    fetch(`${host}/posts/${index + 1}`, {
+  function deletePost(context, index, host, getPostsContainer) {
+    fetch(`${host}/posts/${context[index].id}`, {
       method: 'delete',
     }).then((resp) => (resp.body))
       .then(response => {
       });
-    const deleteThisPost = document.querySelector(`.post${index}`);
+    const deleteThisPost = document.querySelector(`.post${context[index].id}`);
     deleteThisPost.classList.add('animated', 'fadeOutLeft');
     setTimeout(() => {
       getPostsContainer.removeChild(deleteThisPost);
     }, 1000);
   }
 
-  function upVote(index, host) {
-    fetch(`${host}/posts/${index + 1}/upvote`, {
+  function upVote(context, index, host) {
+    fetch(`${host}/posts/${context[index].id}/upvote`, {
       method: 'put',
     }).then((resp) => (resp.body))
       .then(response => {
       });
     const getCurrentScore = document.querySelectorAll(`.button-holder p`);
     getCurrentScore[index].textContent++;
-    const getUpvoteButton = document.querySelector(`.post${index} .button-holder .upvote-button`);
+    const getUpvoteButton = document.querySelector(`.post${context[index].id} .button-holder .upvote-button`);
     getUpvoteButton.style.backgroundImage = 'url(../assets/css/upvoted.png)';
   }
 
-  function downVote(index, host) {
-    fetch(`${host}/posts/${index + 1}/downvote`, {
+  function downVote(context, index, host) {
+    fetch(`${host}/posts/${context[index].id}/downvote`, {
       method: 'put',
     }).then((resp) => (resp.body))
       .then(response => {
       });
     const getCurrentScore = document.querySelectorAll(`.button-holder p`);
     getCurrentScore[index].textContent--;
-    const getDownvoteButton = document.querySelector(`.post${index} .button-holder .downvote-button`);
+    const getDownvoteButton = document.querySelector(`.post${context[index].id} .button-holder .downvote-button`);
     getDownvoteButton.style.backgroundImage = 'url(../assets/css/downvoted.png)';
   }
 
