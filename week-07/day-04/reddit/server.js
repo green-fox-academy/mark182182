@@ -106,7 +106,7 @@ app.post('/posts', function (req, res) {
   const url = req.body.url;
   const username = req.body.username;
 
-  conn.query(`INSERT INTO posts2(title, url) VALUES(?, ?)`, [title, url], function (err) {
+  conn.query(`INSERT INTO posts2(title, url, owner) VALUES(?, ?, ?)`, [title, url, username], function (err) {
     if (err) {
       console.log(err.toString());
       res.status(500).send('Database error');

@@ -73,22 +73,24 @@ window.onload = () => {
       postActionHolder.classList.add('post-action-holder');
       newPostsHolder.appendChild(postActionHolder);
 
-      let modifyElement = document.createElement('button');
-      postActionHolder.appendChild(modifyElement);
-      modifyElement.innerHTML = 'Modify';
-      modifyElement.classList.add('modify-post', 'button');
-      modifyElement.addEventListener('click', () => {
-        localStorage.setItem("currentElement", index + 1);
-        localStorage.setItem("currentTitle", context[index].title);
-        localStorage.setItem("currentURL", context[index].url);
-        window.location = `${host}/modify`
-      }, false);
+      if (localStorage.getItem('username') !== null) {
+        let modifyElement = document.createElement('button');
+        postActionHolder.appendChild(modifyElement);
+        modifyElement.innerHTML = 'Modify';
+        modifyElement.classList.add('modify-post', 'button');
+        modifyElement.addEventListener('click', () => {
+          localStorage.setItem("currentElement", index + 1);
+          localStorage.setItem("currentTitle", context[index].title);
+          localStorage.setItem("currentURL", context[index].url);
+          window.location = `${host}/modify`
+        }, false);
 
-      let deleteElement = document.createElement('button');
-      postActionHolder.appendChild(deleteElement);
-      deleteElement.innerHTML = 'Remove';
-      deleteElement.classList.add('delete-post', 'button');
-      deleteElement.addEventListener('click', deletePost.bind(null, index, host, getPostsContainer), false);
+        let deleteElement = document.createElement('button');
+        postActionHolder.appendChild(deleteElement);
+        deleteElement.innerHTML = 'Remove';
+        deleteElement.classList.add('delete-post', 'button');
+        deleteElement.addEventListener('click', deletePost.bind(null, index, host, getPostsContainer), false);
+      }
     }
     const submitButton = document.querySelector('#submit-button');
     submitButton.addEventListener('click', () => { window.location = `${host}/submit` }, false);
@@ -100,6 +102,13 @@ window.onload = () => {
 
     const createButton = document.querySelector('#create-button');
     createButton.addEventListener('click', () => { window.location = `${host}/create` }, false);
+
+    if (localStorage.getItem('username') !== null) {
+      const loginCreateUser = document.querySelector('#login-create-user-container');
+      loginCreateUser.style.flexDirection = 'row-reverse';
+      loginButton.style.visibility = 'hidden';
+      createButton.style.visibility = 'hidden';
+    }
   }
 
   function deletePost(index, host, getPostsContainer) {
@@ -155,6 +164,8 @@ window.onload = () => {
       document.querySelector('#navbar').appendChild(loginText);
     }
     else {
+      const getSubmitContainer = document.querySelector('#submit-container');
+      getSubmitContainer.style.display = 'none';
       logoutButton.style.visibility = 'hidden';
     }
     logoutButton.addEventListener('click', () => {

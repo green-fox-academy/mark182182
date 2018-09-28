@@ -16,11 +16,12 @@ window.onload = () => {
     http.setRequestHeader("Content-Type", "application/json");
     const getTitle = document.querySelector('#post-title')['value'];
     const getUrl = document.querySelector('#post-url')['value'];
+    const getUsername = localStorage.getItem('username');
     if (getTitle === "") {
       alert('Please provide a title!');
     }
     else {
-      http.send(JSON.stringify({ title: getTitle, url: getUrl }));
+      http.send(JSON.stringify({ title: getTitle, url: getUrl, username: getUsername }));
       window.location = `${host}`;
     }
   };
