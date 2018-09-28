@@ -93,18 +93,7 @@ window.onload = () => {
     const submitButton = document.querySelector('#submit-button');
     submitButton.addEventListener('click', () => { window.location = `${host}/submit` }, false);
 
-    let getLoginContainer = document.querySelector("#login-container");
-
-    if (localStorage.getItem('username') === null) {
-      loginText = document.createElement('p');
-      loginText.textContent = 'Please log in!';
-      document.querySelector('#navbar').appendChild(loginText);
-    }
-    else {
-      loginText = document.createElement('p');
-      loginText.textContent = `Logged in as ${localStorage.getItem('username')}`;
-      getLoginContainer.appendChild(loginText);
-    }
+    makeLogout();
 
     const loginButton = document.querySelector('#login-button');
     loginButton.addEventListener('click', () => { window.location = `${host}/login` }, false);
@@ -148,5 +137,31 @@ window.onload = () => {
     getCurrentScore[index].textContent--;
     const getDownvoteButton = document.querySelector(`.post${index} .button-holder .downvote-button`);
     getDownvoteButton.style.backgroundImage = 'url(../assets/css/downvoted.png)';
+  }
+
+  function makeLogout() {
+    loginText = document.createElement('p');
+    const logoutButton = document.querySelector('#logout-button');
+    logoutButton.style.visibility = 'hidden';
+
+    if (localStorage.getItem('username') === null) {
+      loginText.textContent = 'Please log in!';
+      document.querySelector('#navbar').appendChild(loginText);
+    }
+
+    if (localStorage.getItem('username') !== null) {
+      logoutButton.style.visibility = 'visible';
+      loginText.textContent = `Logged in as ${localStorage.getItem('username')}`;
+      document.querySelector('#navbar').appendChild(loginText);
+    }
+    else {
+      logoutButton.style.visibility = 'hidden';
+    }
+    logoutButton.addEventListener('click', () => {
+      localStorage.removeItem('username');
+      alert('Logout successful.');
+      logoutButton.style.visibility = 'hidden';
+      window.location = `${host}`;
+    }, false);
   }
 }

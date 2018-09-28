@@ -34,6 +34,10 @@ body {
   padding-top: 10px;
 }
 
+#logout-container {
+  padding-right: 10px;
+}
+
 #login-container {
   padding-right: 10px;
 }

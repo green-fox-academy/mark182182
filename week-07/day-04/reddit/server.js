@@ -53,22 +53,31 @@ app.post('/login', function (req, res) {
   const owner = req.body.owner;
   const password = req.body.password;
 
-  conn.query(`SELECT password FROM users WHERE owner = '${owner}'`, function (err, pass) {
+  conn.query(`SELECT password FROM users WHERE owner = ?`, [owner], function (err, pass) {
     if (err) {
       console.log(err.toString());
       res.status(500).send('Database error');
       return;
     }
     else {
-      console.log(pass);
-      conn.query(`SELECT SHA1('${password}') = '${pass}' AS 'password found'`, function (err, result) {
-        if (err) {
-          console.log(err.toString());
-          res.status(500).send('Database error');
-          return;
-        }
-        console.log(result);
-      });
+      if (pass.length !== 0) {
+        conn.query(`SELECT SHA1(?) = ? AS 'password found'`, [password, pass[0].password], function (err, result) {
+          if (err) {
+            console.log(err.toString());
+            res.status(500).send('Database error');
+            return;
+          }
+          if (result[0]['password found'] === 1) {
+            res.status(200).json(owner);
+          }
+          else {
+            res.status(200).json('Incorrect password!');
+          }
+        });
+      }
+      else {
+        res.status(200).json('Incorrect username!');
+      }
     }
   });
 });
@@ -78,7 +87,7 @@ app.post('/create', function (req, res) {
   const owner = req.body.owner;
   const password = req.body.password;
 
-  conn.query(`INSERT INTO users(owner, password) VALUES('${owner}', SHA1('${password}'))`, function (err) {
+  conn.query(`INSERT INTO users(owner, password) VALUES(?, SHA1(?))`, [owner, password], function (err) {
     if (err) {
       console.log(err.toString());
       res.status(500).send('Database error');
@@ -97,7 +106,7 @@ app.post('/posts', function (req, res) {
   const url = req.body.url;
   const username = req.body.username;
 
-  conn.query(`INSERT INTO posts2(title, url) VALUES('${title}', '${url}')`, function (err) {
+  conn.query(`INSERT INTO posts2(title, url) VALUES(?, ?)`, [title, url], function (err) {
     if (err) {
       console.log(err.toString());
       res.status(500).send('Database error');
@@ -105,7 +114,7 @@ app.post('/posts', function (req, res) {
     }
     else {
       console.log(`Inserted ${req.body.title}`);
-      getRows(req, res, `WHERE title = '${title}' ORDER BY id DESC LIMIT 1`);
+      getRows(req, res, `WHERE title = ? ORDER BY id DESC LIMIT 1`[title]);
     }
   });
 });
@@ -123,7 +132,7 @@ app.put('/posts/:id/downvote', function (req, res) {
 app.delete('/posts/:id', function (req, res) {
   const postId = req.params.id;
 
-  conn.query(`DELETE FROM posts2 WHERE id = ${postId}`, function (err) {
+  conn.query(`DELETE FROM posts2 WHERE id = ?`, [postId], function (err) {
     if (err) {
       console.log(err.toString());
       res.status(500).send('Database error');
@@ -139,7 +148,7 @@ app.put('/posts/:id', function (req, res) {
   const title = req.body.title;
   const url = req.body.url;
 
-  conn.query(`UPDATE posts2 SET title = '${title}', url = '${url}' WHERE id = ${postId} `, function (err) {
+  conn.query(`UPDATE posts2 SET title = ?, url = ? WHERE id = ?`, [title, url, postId], function (err) {
     if (err) {
       console.log(err.toString());
       res.status(500).send('Database error');
@@ -152,7 +161,7 @@ app.put('/posts/:id', function (req, res) {
 function voteChange(req, res, operation) {
   const postId = req.params.id;
 
-  conn.query(`UPDATE posts2 SET score = score ${operation} 1 WHERE id = ${postId} `, function (err) {
+  conn.query(`UPDATE posts2 SET score = score ${operation} 1 WHERE id = ?`, [postId], function (err) {
     if (err) {
       console.log(err.toString());
       res.status(500).send('Database error');
@@ -173,16 +182,14 @@ function getRows(req, res, queryParameter) {
   });
 }
 
-function reCreateids(req, res) {
-  conn.query(`SET @num := 0;
-  UPDATE posts2 SET id = @num := (@num+1);
-ALTER TABLE posts2 AUTO_INCREMENT = 1; `, function (err) {
-      if (err) {
-        console.log(err.toString());
-        res.status(500).send('Database error');
-        return;
-      }
-    });
+function getPostId(req, res) {
+  conn.query(`SELECT id FROM posts2 WHERE id =  `, function (err) {
+    if (err) {
+      console.log(err.toString());
+      res.status(500).send('Database error');
+      return;
+    }
+  });
 }
 
 app.listen(PORT, () => {
@@ -191,7 +198,7 @@ app.listen(PORT, () => {
 
 function getUserId(req, res) {
   const username = req.body.owner;
-  conn.query(`SELECT owner_id FROM users WHERE owner = '${username}'`, function (err, username) {
+  conn.query(`SELECT owner_id FROM users WHERE owner = ?`, [username], function (err, username) {
     if (err) {
       console.log(err.toString());
       res.status(500).send('Database error');
