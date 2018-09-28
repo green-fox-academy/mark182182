@@ -86,16 +86,29 @@ app.post('/login', function (req, res) {
 app.post('/create', function (req, res) {
   const owner = req.body.owner;
   const password = req.body.password;
-
-  conn.query(`INSERT INTO users(owner, password) VALUES(?, SHA1(?))`, [owner, password], function (err) {
+  let userExist = [];
+  conn.query(`SELECT owner FROM users WHERE owner = ?`, [owner], function (err, result) {
     if (err) {
       console.log(err.toString());
       res.status(500).send('Database error');
       return;
     }
+    userExist.push(result);
+    if (userExist.length < 1) {
+      conn.query(`INSERT INTO users(owner, password) VALUES(?, SHA1(?))`, [owner, password], function (err) {
+        if (err) {
+          console.log(err.toString());
+          res.status(500).send('Database error');
+          return;
+        }
+        else {
+          console.log(`User created with name: ${owner}`);
+          getUserId(req, res);
+        }
+      });
+    }
     else {
-      console.log(`User created with name: ${owner}`);
-      getUserId(req, res);
+      res.status(200).json('User already exist!');
     }
   });
 });
@@ -172,7 +185,7 @@ function voteChange(req, res, operation) {
 }
 
 function getRows(req, res, queryParameter) {
-  conn.query(`SELECT * from posts2 ${queryParameter} ORDER BY timestamp ASC `, function (err, rows) {
+  conn.query(`SELECT * from posts2 ${queryParameter} ORDER BY timestamp DESC `, function (err, rows) {
     if (err) {
       console.log(err.toString());
       res.status(500).send('Database error');
