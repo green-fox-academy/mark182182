@@ -52,6 +52,17 @@ app.get('/comment', function (req, res) {
   res.status(200).sendFile(path.join(__dirname, 'comment.html'));
 });
 
+app.get('/comment/all', function (req, res) {
+  conn.query(`SELECT comment FROM comments;`, function (err, comments) {
+    if (err) {
+      console.log(err.toString());
+      res.status(500).send('Database error');
+      return;
+    }
+    res.status(200).json({ comments });
+  });
+});
+
 app.post('/login', function (req, res) {
   const owner = req.body.owner;
   const password = req.body.password;

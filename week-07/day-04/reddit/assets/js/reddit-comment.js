@@ -50,6 +50,8 @@ window.onload = () => {
         newInfo.classList.add(`info`);
         newPostsHolder.appendChild(newInfo);
 
+        getComments(host);
+
         if (((Date.now() - Date.parse(postTime)) / 1000) < 1) {
           newInfo.innerHTML = 'Post created by ' + username + ' ' + ' now.';
         }
@@ -70,7 +72,8 @@ window.onload = () => {
           newInfo.innerHTML = 'Post created by ' + username + ' ' + parseInt((Date.now() - Date.parse(postTime)) / 86400000) + ' days ago.';
         }
 
-        getSubmitButton.addEventListener('click', sendPost.bind(null, host, getTitle, getUrl, getUsername), false);
+        getSubmitButton.addEventListener('click', sendComment.bind(null, host, getTitle, getUrl, getUsername), false);
+
       }
     }
     http.send();
@@ -97,7 +100,19 @@ window.onload = () => {
       const getDownvoteButton = document.querySelector(`.post${postId} .button-holder .downvote-button`);
       getDownvoteButton.style.backgroundImage = 'url(../assets/css/downvoted.png)';
     }
-    function sendPost(getTitle, getUrl, getUsername) {
+
+    function getComments(host) {
+      fetch(`${host}/comment/all`, {
+        method: 'get',
+      }).then((resp) => resp.json().then(resp => {
+        for (let index = 0; index < resp.comments.length; index++) {
+          console.log(resp.comments[index].comment)
+        }
+      }));
+    }
+
+    function sendComment() {
+
     }
   }
 }
