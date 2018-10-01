@@ -1,0 +1,19 @@
+{
+  "name": "arrow",
+  "version": "1.0.0",
+  "description": "",
+  "main": "script.js",
+  "scripts": {
+    "test": "node *test.js",
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.3",
+    "supertest": "^3.3.0",
+    "tape": "^4.9.1"
+  }
+}
