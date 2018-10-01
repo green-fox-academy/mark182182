@@ -221,3 +221,12 @@ body {
   margin-bottom: 12px;
   margin-left: 12px;
 }
+
+.posts-comment-holder {
+  margin: 0 40px;
+}
+
+#comment-container {
+  display: flex;
+  margin-bottom: 12px;
+}

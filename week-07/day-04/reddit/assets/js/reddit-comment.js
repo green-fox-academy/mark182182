@@ -69,9 +69,7 @@ window.onload = () => {
         else if (((Date.now() - Date.parse(postTime)) / 86400000) >= 1 && ((Date.now() - Date.parse(postTime)) / 86400000) < 24) {
           newInfo.innerHTML = 'Post created by ' + username + ' ' + parseInt((Date.now() - Date.parse(postTime)) / 86400000) + ' days ago.';
         }
-        let postActionHolder = document.createElement('div');
-        postActionHolder.classList.add('post-action-holder');
-        newPostsHolder.appendChild(postActionHolder);
+
         getSubmitButton.addEventListener('click', sendPost.bind(null, host, getTitle, getUrl, getUsername), false);
       }
     }
