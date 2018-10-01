@@ -172,6 +172,10 @@ body {
   margin-left: 10px;
 }
 
+.comment-post {
+  margin-left: 10px;
+}
+
 #subreddit-information {
   display: flex;
   flex-direction: column;

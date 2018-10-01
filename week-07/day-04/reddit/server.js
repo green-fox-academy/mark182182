@@ -45,8 +45,11 @@ app.get('/login', function (req, res) {
 });
 
 app.get('/posts', function (req, res) {
-  req.headers["content-type"] = "application/json";
   getRows(req, res);
+});
+
+app.get('/comment', function (req, res) {
+  res.status(200).sendFile(path.join(__dirname, 'comment.html'));
 });
 
 app.post('/login', function (req, res) {
@@ -114,7 +117,6 @@ app.post('/create', function (req, res) {
 });
 
 app.post('/posts', function (req, res) {
-  req.headers["content-type"] = "application/json";
   const title = req.body.title;
   const url = req.body.url;
   const username = req.body.username;
@@ -133,12 +135,10 @@ app.post('/posts', function (req, res) {
 });
 
 app.put('/posts/:id/upvote', function (req, res) {
-  req.headers["content-type"] = "application/json";
   voteChange(req, res, '+');
 });
 
 app.put('/posts/:id/downvote', function (req, res) {
-  req.headers["content-type"] = "application/json";
   voteChange(req, res, '-');
 });
 
@@ -182,6 +182,18 @@ function voteChange(req, res, operation) {
     }
   });
   getRows(req, res, `WHERE id = ${postId} `);
+}
+
+function getCurrentPost(req, res) {
+  const id = req.params.id;
+  conn.query(`SELECT * from posts2 WHERE id = ?`, [id], function (err, rows) {
+    if (err) {
+      console.log(err.toString());
+      res.status(500).send('Database error');
+      return;
+    }
+    res.status(200).json(rows);
+  });
 }
 
 function getRows(req, res, queryParameter) {

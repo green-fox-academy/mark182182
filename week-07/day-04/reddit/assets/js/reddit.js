@@ -91,7 +91,20 @@ window.onload = () => {
         deleteElement.innerHTML = 'Remove';
         deleteElement.classList.add('delete-post', 'button');
         deleteElement.addEventListener('click', deletePost.bind(null, context, index, host, getPostsContainer), false);
-
+      }
+      if (localStorage.getItem('username') !== null) {
+        let commentElement = document.createElement('button');
+        postActionHolder.appendChild(commentElement);
+        commentElement.innerHTML = 'Comment';
+        commentElement.classList.add('comment-post', 'button');
+        commentElement.addEventListener('click', () => {
+          localStorage.setItem("currentElement", context[index].id);
+          localStorage.setItem("currentTitle", context[index].title);
+          localStorage.setItem("currentURL", context[index].url);
+          localStorage.setItem("currentScore", context[index].score);
+          localStorage.setItem("currentTimestamp", context[index].timestamp);
+          window.location = `${host}/comment`
+        }, false);
       }
     }
     const submitButton = document.querySelector('#submit-button');
