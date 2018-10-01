@@ -7,6 +7,7 @@
 
 ## Link to projects:
 * [Bookstore](https://github.com/green-fox-academy/mark182182/tree/master/week-07/day-03/bookstore)
+* [Reddit](https://github.com/green-fox-academy/mark182182/tree/master/week-07/day-04/reddit)
 
 ## Link to syllabus:
 * [Coffee time](https://github.com/green-fox-academy/coffee-syllabus)
