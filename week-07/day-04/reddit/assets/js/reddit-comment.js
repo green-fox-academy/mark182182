@@ -83,9 +83,8 @@ window.onload = () => {
     function upVote(postId, host) {
       fetch(`${host}/posts/${postId}/upvote`, {
         method: 'put',
-      }).then((resp) => (resp.body))
-        .then(response => {
-        });
+      }).then((resp) => (resp.body));
+
       const getCurrentScore = document.querySelector(`.button-holder p`);
       getCurrentScore.textContent++;
       const getUpvoteButton = document.querySelector(`.post${postId} .button-holder .upvote-button`);
@@ -95,9 +94,8 @@ window.onload = () => {
     function downVote(postId, host) {
       fetch(`${host}/posts/${postId}/downvote`, {
         method: 'put',
-      }).then((resp) => (resp.body))
-        .then(response => {
-        });
+      }).then((resp) => (resp.body));
+
       const getCurrentScore = document.querySelector(`.button-holder p`);
       getCurrentScore.textContent--;
       const getDownvoteButton = document.querySelector(`.post${postId} .button-holder .downvote-button`);

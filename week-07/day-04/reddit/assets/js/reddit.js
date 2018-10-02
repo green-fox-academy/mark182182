@@ -129,9 +129,8 @@ window.onload = () => {
   function deletePost(context, index, host, getPostsContainer) {
     fetch(`${host}/posts/${context[index].id}`, {
       method: 'delete',
-    }).then((resp) => (resp.body))
-      .then(response => {
-      });
+    }).then((resp) => (resp.body));
+
     const deleteThisPost = document.querySelector(`.post${context[index].id}`);
     deleteThisPost.classList.add('animated', 'fadeOutLeft');
     setTimeout(() => {
@@ -142,9 +141,8 @@ window.onload = () => {
   function upVote(context, index, host) {
     fetch(`${host}/posts/${context[index].id}/upvote`, {
       method: 'put',
-    }).then((resp) => (resp.body))
-      .then(response => {
-      });
+    }).then((resp) => (resp.body));
+
     const getCurrentScore = document.querySelectorAll(`.button-holder p`);
     getCurrentScore[index].textContent++;
     const getUpvoteButton = document.querySelector(`.post${context[index].id} .button-holder .upvote-button`);
@@ -154,9 +152,8 @@ window.onload = () => {
   function downVote(context, index, host) {
     fetch(`${host}/posts/${context[index].id}/downvote`, {
       method: 'put',
-    }).then((resp) => (resp.body))
-      .then(response => {
-      });
+    }).then((resp) => (resp.body));
+
     const getCurrentScore = document.querySelectorAll(`.button-holder p`);
     getCurrentScore[index].textContent--;
     const getDownvoteButton = document.querySelector(`.post${context[index].id} .button-holder .downvote-button`);
