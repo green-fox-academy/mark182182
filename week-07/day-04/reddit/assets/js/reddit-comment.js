@@ -101,7 +101,7 @@ window.onload = () => {
       getDownvoteButton.style.backgroundImage = 'url(../assets/css/downvoted.png)';
     }
 
-    function getComments(host) {
+    function getComments(host, username) {
       fetch(`${host}/comment/all`, {
         method: 'get',
       }).then((resp) => resp.json().then(resp => {
@@ -110,7 +110,7 @@ window.onload = () => {
           const newCommentWrapper = document.querySelector('#comment-wrapper');
           const commentText = document.createElement('p');
           commentText.classList.add(`comment${index}`, 'comment');
-          commentText.innerHTML = resp.comments[index].comment;
+          commentText.innerHTML = resp.comments[index].comment + ' by username ' + ' timestamp ago';
           getPostCommentHolder.appendChild(newCommentWrapper);
           newCommentWrapper.appendChild(commentText);
           const lineSeparator = document.createElement('hr');
