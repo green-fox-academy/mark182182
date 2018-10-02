@@ -7,8 +7,8 @@ Database is included in the `reddit` directory.
 * Vote on posts
 * Modify / delete posts
 * Unique usernames
+* Comment section
 
 ## TBD:
-* Comment section
 * Users with profile pic
 * Can only vote once on a post (per user)
