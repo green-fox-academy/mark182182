@@ -118,6 +118,7 @@ app.post('/create', function (req, res) {
   const owner = req.body.owner;
   const password = req.body.password;
   let userExist = [];
+
   conn.query(`SELECT owner FROM users WHERE owner = ?`, [owner], function (err, result) {
     if (err) {
       console.log(err.toString());
@@ -125,7 +126,8 @@ app.post('/create', function (req, res) {
       return;
     }
     userExist.push(result);
-    if (userExist.length < 1) {
+    if (userExist[0][0] === undefined) {
+
       conn.query(`INSERT INTO users(owner, password) VALUES(?, SHA1(?))`, [owner, password], function (err) {
         if (err) {
           console.log(err.toString());
