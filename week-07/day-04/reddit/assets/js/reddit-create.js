@@ -13,6 +13,9 @@ window.onload = () => {
       getContentHolder.appendChild(makeText);
       makeText.style.color = 'white';
       getLoginButton.addEventListener('click', sendAccountDetails.bind(null, host, getUsername, getPassword, makeText), false);
+
+      const getBackButton = document.querySelector('#back-button');
+      getBackButton.addEventListener('click', () => { window.location = `${host}` }, false);
     }
   }
   http.send();

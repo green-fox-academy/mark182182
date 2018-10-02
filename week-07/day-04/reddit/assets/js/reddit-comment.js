@@ -74,6 +74,8 @@ window.onload = () => {
         }
 
         getSubmitButton.addEventListener('click', sendComment.bind(null, username, postId), false);
+        const getBackButton = document.querySelector('#back-button');
+        getBackButton.addEventListener('click', () => { window.location = `${host}` }, false);
 
       }
     }

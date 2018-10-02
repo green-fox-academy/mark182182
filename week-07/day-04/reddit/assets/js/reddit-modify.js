@@ -13,6 +13,9 @@ window.onload = () => {
         getUrl.setAttribute("value", localStorage.getItem("currentURL"));
         const getUsername = localStorage.getItem('username');
         getSubmitButton.addEventListener('click', sendPost.bind(null, host, getTitle, getUrl, getUsername), false);
+
+        const getBackButton = document.querySelector('#back-button');
+        getBackButton.addEventListener('click', () => { window.location = `${host}` }, false);
       }
     }
     http.send();

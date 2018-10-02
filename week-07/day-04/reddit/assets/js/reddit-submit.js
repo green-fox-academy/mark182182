@@ -8,6 +8,9 @@ window.onload = () => {
       if (http.status === 200) {
         const getSubmitButton = document.querySelector('#submit-button');
         getSubmitButton.addEventListener('click', sendPost.bind(null, host), false);
+
+        const getBackButton = document.querySelector('#back-button');
+        getBackButton.addEventListener('click', () => { window.location = `${host}` }, false);
       }
     }
     http.send();
