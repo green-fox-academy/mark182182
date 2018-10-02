@@ -218,10 +218,6 @@ function getRows(req, res, queryParameter) {
   });
 }
 
-app.listen(PORT, () => {
-  console.log(`Server is up on port ${PORT} `);
-});
-
 function getUserId(req, res) {
   const username = req.body.owner;
   conn.query(`SELECT owner_id FROM users WHERE owner = ?`, [username], function (err, username) {
@@ -233,3 +229,7 @@ function getUserId(req, res) {
     res.status(200).json({ username });
   });
 }
+
+app.listen(PORT, () => {
+  console.log(`Server is up on port ${PORT} `);
+});

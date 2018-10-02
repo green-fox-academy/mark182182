@@ -230,3 +230,14 @@ body {
   display: flex;
   margin-bottom: 12px;
 }
+
+#comment-wrapper {
+  display: flex;
+  flex-direction: column;
+  margin-top: 12px;
+  border: 1px solid #CCCCCC;
+  background-color: #FFFFFF;
+  border-collapse: collapse;
+  border-radius: 14px;
+  overflow: hidden;
+}

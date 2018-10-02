@@ -12,7 +12,7 @@ window.onload = () => {
         const postScore = localStorage.getItem('currentScore');
         const postTime = localStorage.getItem('currentTimestamp');
         const username = localStorage.getItem('username');
-        const getSubmitButton = document.querySelector('#submit-button');
+        const getSubmitButton = document.querySelector('#comment-button');
         const getPostsContainer = document.querySelector('.posts-container');
         let newDivElement = document.createElement('div');
         getPostsContainer.appendChild(newDivElement);
@@ -72,7 +72,7 @@ window.onload = () => {
           newInfo.innerHTML = 'Post created by ' + username + ' ' + parseInt((Date.now() - Date.parse(postTime)) / 86400000) + ' days ago.';
         }
 
-        getSubmitButton.addEventListener('click', sendComment.bind(null, host, getTitle, getUrl, getUsername), false);
+        getSubmitButton.addEventListener('click', sendComment.bind(null, host, postId, username), false);
 
       }
     }
@@ -106,7 +106,15 @@ window.onload = () => {
         method: 'get',
       }).then((resp) => resp.json().then(resp => {
         for (let index = 0; index < resp.comments.length; index++) {
-          console.log(resp.comments[index].comment)
+          const getPostCommentHolder = document.querySelector('.posts-comment-holder');
+          const newCommentWrapper = document.querySelector('#comment-wrapper');
+          const commentText = document.createElement('p');
+          commentText.classList.add(`comment${index}`, 'comment');
+          commentText.innerHTML = resp.comments[index].comment;
+          getPostCommentHolder.appendChild(newCommentWrapper);
+          newCommentWrapper.appendChild(commentText);
+          const lineSeparator = document.createElement('hr');
+          commentText.appendChild(lineSeparator);
         }
       }));
     }
