@@ -13,10 +13,10 @@ window.onload = () => {
       xhr.send();
     });
   };
-  /* .then((resp) => resp.json().then(resp => { */
+
   myAsyncAjax(host).then((response) => {
     newText.innerHTML = JSON.parse(response).name;
   }).catch((error) => {
-    newText.innerHTML = 'error';
+    newText.innerHTML = error;
   });
 }
