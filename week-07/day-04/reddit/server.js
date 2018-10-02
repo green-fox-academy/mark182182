@@ -52,14 +52,31 @@ app.get('/comment', function (req, res) {
   res.status(200).sendFile(path.join(__dirname, 'comment.html'));
 });
 
-app.get('/comment/all', function (req, res) {
-  conn.query(`SELECT comment FROM comments;`, function (err, comments) {
+app.get('/comment/:id', function (req, res) {
+  const postId = req.params.id;
+  conn.query(`SELECT * FROM comments WHERE post_id = ?;`, [postId], function (err, comments) {
     if (err) {
       console.log(err.toString());
       res.status(500).send('Database error');
       return;
     }
     res.status(200).json({ comments });
+  });
+});
+
+app.post('/comment/:id', function (req, res) {
+  const comment = req.body.comment;
+  const owner = req.body.owner;
+  const postId = req.params.id;
+  console.log(owner, comment);
+
+
+  conn.query(`INSERT INTO comments (comment, comment_owner, post_id) VALUES(?, ?, ?);`, [comment, owner, postId], function (err) {
+    if (err) {
+      console.log(err.toString());
+      res.status(500).send('Database error');
+      return;
+    }
   });
 });
 

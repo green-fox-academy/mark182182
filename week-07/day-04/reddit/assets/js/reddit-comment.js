@@ -14,6 +14,7 @@ window.onload = () => {
         const username = localStorage.getItem('username');
         const getSubmitButton = document.querySelector('#comment-button');
         const getPostsContainer = document.querySelector('.posts-container');
+
         let newDivElement = document.createElement('div');
         getPostsContainer.appendChild(newDivElement);
         newDivElement.classList.add(`post${postId}`, 'post');
@@ -50,7 +51,7 @@ window.onload = () => {
         newInfo.classList.add(`info`);
         newPostsHolder.appendChild(newInfo);
 
-        getComments(host);
+        getComments(host, postId);
 
         if (((Date.now() - Date.parse(postTime)) / 1000) < 1) {
           newInfo.innerHTML = 'Post created by ' + username + ' ' + ' now.';
@@ -72,7 +73,7 @@ window.onload = () => {
           newInfo.innerHTML = 'Post created by ' + username + ' ' + parseInt((Date.now() - Date.parse(postTime)) / 86400000) + ' days ago.';
         }
 
-        getSubmitButton.addEventListener('click', sendComment.bind(null, host, postId, username), false);
+        getSubmitButton.addEventListener('click', sendComment.bind(null, username, postId), false);
 
       }
     }
@@ -101,26 +102,59 @@ window.onload = () => {
       getDownvoteButton.style.backgroundImage = 'url(../assets/css/downvoted.png)';
     }
 
-    function getComments(host, username) {
-      fetch(`${host}/comment/all`, {
-        method: 'get',
+    function getComments(host, postId) {
+      fetch(`${host}/comment/${postId}`, {
+        method: 'get'
       }).then((resp) => resp.json().then(resp => {
         for (let index = 0; index < resp.comments.length; index++) {
           const getPostCommentHolder = document.querySelector('.posts-comment-holder');
           const newCommentWrapper = document.querySelector('#comment-wrapper');
           const commentText = document.createElement('p');
+          const infoText = document.createElement('p');
           commentText.classList.add(`comment${index}`, 'comment');
-          commentText.innerHTML = resp.comments[index].comment + ' by username ' + ' timestamp ago';
+          commentText.innerHTML = resp.comments[index].comment;
+          if (((Date.now() - Date.parse(resp.comments[index].timestamp)) / 1000) < 1) {
+            infoText.innerHTML = resp.comments[index].comment_owner + ' ' + ' now.';
+          }
+
+          else if (((Date.now() - Date.parse(resp.comments[index].timestamp)) / 1000) >= 1 && ((Date.now() - Date.parse(resp.comments[index].timestamp)) / 1000) < 60) {
+            infoText.innerHTML = resp.comments[index].comment_owner + ' ' + parseInt((Date.now() - Date.parse(resp.comments[index].timestamp)) / 1000) + ' seconds ago.';
+          }
+
+          else if (((Date.now() - Date.parse(resp.comments[index].timestamp)) / 60000) >= 1 && ((Date.now() - Date.parse(resp.comments[index].timestamp)) / 60000) < 60) {
+            infoText.innerHTML = resp.comments[index].comment_owner + ' ' + parseInt((Date.now() - Date.parse(resp.comments[index].timestamp)) / 60000) + ' minutes ago.';
+          }
+
+          else if (((Date.now() - Date.parse(resp.comments[index].timestamp)) / 3600000) >= 1 && ((Date.now() - Date.parse(resp.comments[index].timestamp)) / 3600000) < 24) {
+            infoText.innerHTML = resp.comments[index].comment_owner + ' ' + parseInt((Date.now() - Date.parse(resp.comments[index].timestamp)) / 3600000) + ' hours ago.';
+          }
+
+          else if (((Date.now() - Date.parse(resp.comments[index].timestamp)) / 86400000) >= 1 && ((Date.now() - Date.parse(resp.comments[index].timestamp)) / 86400000) < 24) {
+            infoText.innerHTML = resp.comments[index].comment_owner + ' ' + parseInt((Date.now() - Date.parse(resp.comments[index].timestamp)) / 86400000) + ' days ago.';
+          }
           getPostCommentHolder.appendChild(newCommentWrapper);
           newCommentWrapper.appendChild(commentText);
+          commentText.appendChild(infoText);
           const lineSeparator = document.createElement('hr');
-          commentText.appendChild(lineSeparator);
+          infoText.appendChild(lineSeparator);
         }
       }));
     }
 
-    function sendComment() {
+    function sendComment(owner, postId) {
+      const comment = document.querySelector('#comment-input')['value'];
 
+      if (comment === "") {
+        alert('Please write a comment!');
+      }
+      else {
+        fetch(`${host}/comment/${postId}`, {
+          method: 'post',
+          headers: { "Content-Type": "application/json; charset=utf-8" },
+          body: JSON.stringify({ owner, comment })
+        });
+        location.reload();
+      }
     }
   }
 }
