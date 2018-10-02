@@ -241,3 +241,7 @@ body {
   border-radius: 14px;
   overflow: hidden;
 }
+
+#post-url, #post-title {
+  margin-left: 12px;
+}
