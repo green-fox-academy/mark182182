@@ -64,6 +64,10 @@ app.get('/comment/:id', function (req, res) {
   });
 });
 
+app.get('/comment/:id/owner', function (req, res) {
+  getPostOwner(req, res);
+});
+
 app.post('/comment/:id', function (req, res) {
   const comment = req.body.comment;
   const owner = req.body.owner;
@@ -246,6 +250,18 @@ function getUserId(req, res) {
       return;
     }
     res.status(200).json({ username });
+  });
+}
+
+function getPostOwner(req, res) {
+  const postId = req.params.postId;
+  conn.query(`SELECT owner FROM posts2 WHERE id = ?`, [postId], function (err, owner) {
+    if (err) {
+      console.log(err.toString());
+      res.status(500).send('Database error');
+      return;
+    }
+    res.status(200).json({ owner });
   });
 }
 

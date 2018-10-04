@@ -51,6 +51,7 @@ window.onload = () => {
         newInfo.classList.add(`info`);
         newPostsHolder.appendChild(newInfo);
 
+        getPostOwner(host, postId);
         getComments(host, postId);
 
         if (((Date.now() - Date.parse(postTime)) / 1000) < 1) {
@@ -155,6 +156,17 @@ window.onload = () => {
         });
         location.reload();
       }
+    }
+
+    function getPostOwner(host, postId) {
+      fetch(`${host}/comment/${postId}/owner`, {
+        method: 'get'
+      }).then(response => {
+        console.log(response);
+
+      }).then(resp => {
+        console.log(JSON.parse(resp));
+      });
     }
   }
 }
