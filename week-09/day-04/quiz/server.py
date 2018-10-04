@@ -1,18 +1,20 @@
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, jsonify
 import MySQLdb as MySQL
-import AdvancedHTMLParser
+import random
 
 app = Flask(__name__)
-parser = AdvancedHTMLParser.AdvancedHTMLParser()
 
 @app.route("/")
-def temp():
+def get_index():
+    return render_template('index.html')
+
+@app.route("/game", methods=['GET'])
+def get_questions():
+    random_int = random.randint(1, 5)
     db = MySQL.connect("localhost", "root", "hello", "quiz")
     cur = db.cursor()
-    query = "SELECT * FROM questions"
-    cur.execute(query)
-    parser.parseFile('./templates/index.html')
-    print(parser.getElementById('head-title'))
-    return jsonify(data=cur.fetchall())
+    get_answer = cur.execute("SELECT * FROM answers JOIN questions ON answers.question_id = questions.id WHERE question_id = %s", [random_int])
+    answers = jsonify(answers=cur.fetchall())
+    return answers
 
 app.run(debug=True)
