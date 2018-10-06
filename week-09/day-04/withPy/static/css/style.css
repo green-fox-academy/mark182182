@@ -1,0 +1,81 @@
+#table-frame {
+  display: grid;
+  justify-content: center;
+}
+
+table {
+  border-collapse: collapse;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 5px 5px 10px 2px #000000;
+}
+
+table td {
+  border-bottom: 2px solid #C1C3D0;
+  border-left: 2px solid #C1C3D0;
+}
+
+table thead {
+  border-bottom: 4px solid #C1C3D0;
+}
+
+thead tr {
+  background-color: #1B1E24;
+  color: #FFFFFF;
+}
+
+thead tr th:first-child {
+  border-right: 2px solid #C1C3D0;
+}
+
+thead tr th {
+  padding: 12px;
+  text-align: center;
+  color: #666A85;
+  font-weight: bold;
+  font-size: larger;
+  text-shadow: 1px 1px 1px #666A85;
+}
+
+tbody tr {
+  margin: 10px;
+  color: #666A85;
+  text-shadow: 1px 1px 1px #666A85;
+}
+
+tbody tr td {
+  padding-left: 12px;
+  text-align: center;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #FFFFFF;
+}
+
+tbody tr:nth-child(odd) {
+  background-color: #EBEBEB;
+}
+
+label {
+  font-weight: bold;
+}
+
+.gray {
+  background-color: #dedede;
+}
+
+#info-table {
+  border-collapse: collapse;
+}
+
+#add-attraction {
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  width: 150px;
+}
+
+#submit-button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 12px;
+}

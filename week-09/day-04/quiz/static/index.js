@@ -49,12 +49,18 @@ window.onload = () => {
     for (let index = 0; index < getWrongAnswers.length; index++) {
       getWrongAnswers[index].addEventListener('click', () => {
         getWrongAnswers[index].style.backgroundColor = 'tomato';
+        setTimeout(() => {
+          location.reload();
+        }, 1000);
       }, false);
     }
 
     const getRightAnswer = document.querySelector('.state-1');
     getRightAnswer.addEventListener('click', () => {
       getRightAnswer.style.backgroundColor = 'green';
+      setTimeout(() => {
+        location.reload();
+      }, 1000);
     }, false);
   };
   http.send();

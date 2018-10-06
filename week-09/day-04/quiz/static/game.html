@@ -10,21 +10,23 @@
   </head>
   <body>
     <h2 id="head-title"></h2>
-    <form action="localhost:5000/game" method="GET" id="game" name="game">
+    <div id="game">
+      <h3 id="question"></h3>
       <div>
-        <h3 id="question"></h3>
+        <button class="button" id="ans1"></button>
       </div>
       <div>
-        <button class="button" type="text" id="ans1"></button>
+        <button class="button" id="ans2"></button>
       </div>
       <div>
-        <button class="button" type="text" id="ans2"></button>
+        <button class="button" id="ans3"></button>
       </div>
       <div>
-        <button class="button" type="text" id="ans3"></button>
+        <button class="button" id="ans4"></button>
       </div>
-      <div>
-        <button class="button" type="text" id="ans4"></button>
-      </div>
-    </body>
-  </html>
+    </div>
+    <div id="manage">
+      <button class="button" id="manage-button">Manage questions</button>
+    </div>
+  </body>
+</html>

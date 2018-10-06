@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{{ url_for('static', filename='./css/style.css') }}">
+    <script src="{{ url_for('static', filename='./js/table.js') }}"></script>
+    <title>Tourist Information</title>
+  </head>
+  <body>
+    <h1>Tourist Information</h1>
+    <table id="info-table">
+      <thead>
+        <tr>
+          <th class="gray">Name</th>
+          <th class="gray">City</th>
+          <th class="gray">Price</th>
+          <th class="gray">Longitude</th>
+          <th class="gray">Latitude</th>
+          <th class="gray">Category</th>
+          <th class="gray">Duration</th>
+          <th class="gray">Recommended age</th>
+        </tr>
+      </thead>
+      <tbody id="table-body">
+      </tbody>
+    </table>
+    <h1>Add attraction</h1>
+    <form id="add-attraction">
+      <label for="name">Name</label>
+      <input type="text" name="name">
+      <label for="city">City</label>
+      <input type="text" name="city">
+      <label for="price">Price</label>
+      <input type="text" name="price">
+      <label for="longitude">Longitude</label>
+      <input type="text" name="longitude">
+      <label for="latitude">Latitude</label>
+      <input type="text" name="latitude">
+      <label for="category">Category</label>
+      <input type="text" name="category">
+      <label for="duration">Duration</label>
+      <input type="text" name="duration">
+      <label for="recommended-age">Recommended Age</label>
+      <input type="text" name="recommendedage">
+      <div id="submit-button-container">
+        <input type="submit" name="submit" value="Submit" id="submit-button">
+      </div>
+    </form>
+  </body>
+</html>
