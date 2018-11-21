@@ -8,6 +8,9 @@
 ## Link to projects:
 * [Bookstore](https://github.com/green-fox-academy/mark182182/tree/master/week-07/day-03/bookstore)
 * [Reddit](https://github.com/green-fox-academy/mark182182/tree/master/week-07/day-04/reddit)
+* [Todo app in C++](https://github.com/mark182182/todocpp)
+* [ELK Stack Terraform module](https://github.com/mark182182/terraform-aws-elkdocker)
 
 ## Link to syllabus:
 * [Coffee time](https://github.com/green-fox-academy/coffee-syllabus)
+* [DevOps](https://github.com/mark182182/devops-tutorials)
