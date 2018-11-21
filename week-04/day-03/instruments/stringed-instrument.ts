@@ -3,7 +3,7 @@
 import { Instrument } from "./instrument";
 
 abstract class StringInstrument extends Instrument {
-  protected abstract numberOfStrings:number;
+  protected numberOfStrings:number;
 
   abstract sound():string;
 }

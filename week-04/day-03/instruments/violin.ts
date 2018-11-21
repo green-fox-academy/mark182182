@@ -3,9 +3,6 @@
 import { StringInstrument } from "./stringed-instrument";
 
 class Violin extends StringInstrument {
-  protected name: string;
-  protected numberOfStrings: number;
-  protected soundOfInstrument: string;
 
   constructor(numberOfStrings:number = 4) {
     super();

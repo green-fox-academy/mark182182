@@ -3,13 +3,11 @@
 import { StringInstrument } from "./stringed-instrument";
 
 class ElectricGuitar extends StringInstrument {
-  protected name: string;
-  protected numberOfStrings: number;
 
   constructor(numberOfStrings:number = 6) {
     super();
-    this.name = "Electric Guitar";
     this.numberOfStrings = numberOfStrings;
+    this.name = "Electric Guitar";
   }
 
   sound():string{

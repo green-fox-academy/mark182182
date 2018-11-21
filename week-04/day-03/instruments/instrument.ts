@@ -1,7 +1,7 @@
 'use strict';
 
 abstract class Instrument {
-  protected abstract name:string;
+  protected name:string;
 
   abstract play():void;
 }
