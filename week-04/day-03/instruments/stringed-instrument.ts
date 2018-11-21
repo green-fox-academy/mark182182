@@ -1,0 +1,11 @@
+'use strict';
+
+import { Instrument } from "./instrument";
+
+abstract class StringInstrument extends Instrument {
+  protected abstract numberOfStrings:number;
+
+  abstract sound():string;
+}
+
+export { StringInstrument };

@@ -1,8 +1,9 @@
 import { Animal } from "./animal";
+import { Flyable } from "../Flyable/flyable";
 
 'use strict';
 
-class Birds extends Animal {
+class Birds extends Animal implements Flyable {
   private canFly: boolean;
   private hasSharpBeak: boolean;
 
@@ -17,8 +18,16 @@ class Birds extends Animal {
   }
   breed(): string {
     return 'laying eggs.'
-
   }
+  land(): void {
+    console.log("On the ground.")
+  }
+  fly(): void {
+    console.log("Fly you fools!")
+  }
+  takeOff(): void {
+    console.log("Almost in the air.")
+  }  
 }
 
 export { Birds };

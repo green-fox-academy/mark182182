@@ -12,7 +12,11 @@ dominoes.push(new Domino(7, 1));
 dominoes.sort(function (a: Domino, b: Domino): number {
   return a.compareTo(b);
 });
-for (let currentElement = 0; currentElement < dominoes.length; currentElement++) {
-  console.log(dominoes[currentElement].values);
-}
+
+console.log(dominoes.sort());
+
 // the order of your dominoes should look like this: [[1,5], [2,4], [4,6], [5,2], [6,7], [7,1]]
+
+for (let domino of dominoes) {
+  domino.printAllFields();
+}

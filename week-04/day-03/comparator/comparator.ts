@@ -9,4 +9,10 @@ interface Comparable {
   */
 }
 
-export { Comparable };
+interface printAllFields {
+
+  printAllFields():void;
+
+}
+
+export { Comparable, printAllFields };

@@ -1,7 +1,7 @@
 import { Reservationy } from './reservationy';
 import { daysOfTheWeek } from './daysoftheweek';
 import { generateCode } from './generatecode';
-'use strict';
+'use strict'
 
 class Reservation implements Reservationy, daysOfTheWeek {
   days: string[];
