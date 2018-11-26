@@ -12,3 +12,6 @@ Database is included in the `reddit` directory.
 ## TBD:
 * Users with profile pic
 * Can only vote once on a post (per user)
+
+## Preview:
+![Reddit](./assets/reddit.gif)
